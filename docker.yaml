@@ -1,0 +1,34 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/docker/
+
+docker-nginx:
+  host: dockerproxy
+  port: 2375
+
+docker-main-pve1:
+  host: docker-main.pve1.int-net.saphnet.xyz
+  port: 2375
+
+#docker-main-pve2:
+#  host: docker-main.pve2.int-net.saphnet.xyz
+#  port: 2375
+
+docker-main-pve3:
+  host: docker-main.pve3.int-net.saphnet.xyz
+  port: 2375
+
+docker-main-pve4:
+  host: docker-main.pve4.int-net.saphnet.xyz
+  port: 2375
+
+portainer-control:
+  host: portainer.int-net.saphnet.xyz
+  port: 2375
+
+vps1:
+  host: vps1-ts.saphnet.xyz
+  port: 2375
+
+# my-docker:
+#   socket: /var/run/docker.sock

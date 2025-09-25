@@ -1,0 +1,271 @@
+# ---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Server:
+    - Proxmox (pve1):
+        icon: proxmox.svg
+        href: https://proxmox.int.saphnet.xyz
+        description: Primary hypervisor, on laptop
+        widget:
+            type: proxmox
+            url: https://proxmox.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve1
+    - TrueNAS Scale (nas1/pve2):
+        icon: truenas.svg
+        href: https://nas1.int.saphnet.xyz
+        description: NAS host for bulk storage
+        widget:
+            type: truenas
+            url: https://nas1.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
+            enablePools: true
+            nasType: scale
+    - Proxmox (pve3):
+        icon: proxmox.svg
+        href: https://proxmox.int.saphnet.xyz
+        description: Hypervisor, on desktop
+        widget:
+            type: proxmox
+            url: https://proxmox.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve3
+    - Proxmox (pve4):
+        icon: proxmox.svg
+        href: https://proxmox.int.saphnet.xyz
+        description: Hypervisor, on desktop
+        widget:
+            type: proxmox
+            url: https://proxmox.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve4
+
+- Netdata:
+    - Netdata (pve1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
+        widget:
+          type: netdata
+          url: https://netdata.int.saphnet.xyz
+    - Netdata (nas1/pve2):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell Inspiron 3650 Intel Core i5-6400 @ 2.7 GHz
+        widget:
+          type: netdata
+          url: https://netdata2.int.saphnet.xyz
+    - Netdata (pve3):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 7020 Intel Core i7-4770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata3.int.saphnet.xyz
+    - Netdata (pve4):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata4.int.saphnet.xyz
+
+- Portainer:
+    - Portainer (Main, pve1):
+        icon: portainer.svg
+        href: https://portainer.int.saphnet.xyz
+        description: Containers on main Docker host (pve1)
+        server: docker-main-pve1
+        container: portainer_agent
+        widget:
+            type: portainer
+            url: https://portainer.int.saphnet.xyz
+            env: 5
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+    - Portainer (Main, pve3):
+        icon: portainer.svg
+        href: https://portainer.int.saphnet.xyz
+        description: Containers on main Docker host (pve3)
+        server: docker-main-pve3
+        container: portainer_agent
+        widget:
+            type: portainer
+            url: https://portainer.int.saphnet.xyz
+            env: 8
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+    - Portainer (Main, pve4):
+        icon: portainer.svg
+        href: https://portainer.int.saphnet.xyz
+        description: Containers on main Docker host (pve4)
+        server: docker-main-pve4
+        container: portainer_agent
+        widget:
+            type: portainer
+            url: https://portainer.int.saphnet.xyz
+            env: 9
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+    - Portainer (Nginx):
+        icon: portainer.svg
+        href: https://portainer.int.saphnet.xyz
+        description: Containers on Nginx Docker host
+        server: docker-nginx
+        container: portainer_agent
+        widget:
+            type: portainer
+            url: https://portainer.int.saphnet.xyz
+            env: 4
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+    - Portainer (Control):
+        icon: portainer.svg
+        href: https://portainer.int.saphnet.xyz
+        description: Containers on Portainer control host
+        server: portainer-control
+        container: portainer
+        widget:
+            type: portainer
+            url: https://portainer.int.saphnet.xyz
+            env: 2
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+
+
+- Services:
+    - Home Assistant:
+        icon: /icons/homeassistant.svg
+        href: https://ha.int.saphnet.xyz
+        description: Smart home manager
+        widget:
+            type: homeassistant
+            url: https://ha.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_HA_API_KEY}}
+    - The Void SMP (Remote):
+        icon: minecraft.svg
+        description: Minecraft SMP server (smp.thevoidpact.xyz)
+        widget:
+            type: minecraft
+            url: udp://smp.thevoidpact.xyz:25565
+    - Folding at Home:
+        icon: foldingathome.svg
+        href: https://fah.int.saphnet.xyz #add your address here
+        description: Fighting disease through computing
+        server: docker-main-pve3
+        container: foldingathome
+        showStats: true
+        widget:
+            type: customapi
+            url: https://api.foldingathome.org/user/{{HOMEPAGE_VAR_FAH_USERNAME}} #add your user name here
+            refreshInterval: 43200000 #set for every 12 hours, for daily scores to not overuse their api
+            method: GET
+            mappings:
+              - field: name
+                label: Name
+                format: text
+              - field: wus
+                label: work units
+                format: number
+              - field: rank
+                label: Rank
+                format: number
+              - field: score
+                label: score
+                format: number
+    - netboot.xyz:
+        icon: /icons/netbootxyz.svg
+        href: https://netboot.int.saphnet.xyz
+        description: PXE server for loading OSes
+        server: docker-main-pve1
+        container: netbootxyz
+        showStats: true
+
+- Media Server:
+    - Jellyfin:
+        icon: jellyfin.svg
+        href: https://jellyfin.int.saphnet.xyz
+        description: Server for managing and streaming media
+        server: docker-main-pve3
+        container: jellyfin
+        showStats: true
+        widget:
+            type: jellyfin
+            url: https://jellyfin.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_JELLYFIN_API_KEY}}
+            enableBlocks: true # optional, defaults to false
+            enableNowPlaying: true # optional, defaults to true
+            enableUser: true # optional, defaults to false
+            showEpisodeNumber: true # optional, defaults to false
+            expandOneStreamToTwoRows: false # optional, defaults to true
+    - Radarr:
+        icon: radarr.svg
+        href: https://radarr.int.saphnet.xyz
+        description: Movie collection manager through BitTorrent
+        server: docker-main-pve3
+        container: radarr
+        showStats: true
+        widget:
+            type: radarr
+            url: https://radarr.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+            enableQueue: true # optional, defaults to false
+    - Jackett:
+        icon: jackett.svg
+        href: https://jackett.int.saphnet.xyz
+        description: Proxy server for torrent trackers
+        server: docker-main-pve3
+        container: jackett
+        showStats: true
+        widget:
+            type: jackett
+            url: https://jackett.int.saphnet.xyz
+            password: {{HOMEPAGE_VAR_JACKETT_PASSWORD}}
+
+- Seedbox:
+    - Deluge:
+        icon: deluge.svg
+        href: https://seedbox.int.saphnet.xyz
+        description: Torrent client
+        server: docker-main-pve3
+        container: deluge
+        showStats: true
+        widget: # No need for Docker stats here
+            type: deluge
+            url: https://seedbox.int.saphnet.xyz
+            password: {{HOMEPAGE_VAR_DELUGE_PASSWORD}}
+            enableLeechProgress: true
+    - Deluge SFTP:
+        icon: /icons/filezilla.svg
+        href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
+        description: Access downloaded seedbox files
+        server: docker-main-pve3
+        container: deluge-sftp
+        showStats: true
+
+- Utilities:
+    - Nginx Proxy Manager:
+        icon: /icons/nginxproxymanager.svg
+        href: https://nginx.int.saphnet.xyz
+        description: Manage reverse proxies and more
+        server: docker-nginx
+        container: nginx-proxy-manager-app-1
+        showStats: true
+        widget:
+            type: npm
+            url: https://nginx.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
+            password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+    - Filestash:
+        icon: /icons/filestash.svg
+        href: https://filestash.int.saphnet.xyz
+        description: Access file servers via web UI
+        server: docker-nginx
+        container: filestash
+        showStats: true
+    - Guacamole:
+        icon: guacamole.svg
+        href: https://guacamole.int.saphnet.xyz
+        description: Remotely connect to systems via web UI
+        server: docker-nginx
+        container: guacamole
+        showStats: true

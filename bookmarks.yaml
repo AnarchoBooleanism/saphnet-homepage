@@ -1,0 +1,25 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Internal:
+    - Router:
+        - abbr: RT
+          href: https://router.int.saphnet.xyz
+    - OpenSpeedTest:
+        - abbr: OST
+          href: https://speedtest.int.saphnet.xyz
+    - OpenSpeedTest (http):
+        - abbr: OST
+          href: http://nginx.int-net.saphnet.xyz:3000
+    - VERT:
+        - abbr: VT
+          href: https://vert.int.saphnet.xyz
+
+- The Void SMP:
+    - Dynmap:
+        - abbr: DY
+          href: https://map.thevoidpact.xyz
+    - Blog:
+        - abbr: BL
+          href: https://builds.thevoidpact.xyz
