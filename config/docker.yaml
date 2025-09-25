@@ -3,7 +3,7 @@
 # https://gethomepage.dev/configs/docker/
 
 docker-nginx:
-  host: dockerproxy
+  host: docker-proxy
   port: 2375
 
 docker-main-pve1:
