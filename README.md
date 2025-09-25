@@ -1,6 +1,8 @@
 # saphnet-homepage
 The config files for Homepage for the Sapphic Homelab/Home Server
 
+To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
+
 Environment variables to pass secrets to in `homepage.env`:
 - `HOMEPAGE_VAR_PROXMOX_USERNAME`
 - `HOMEPAGE_VAR_PROXMOX_PASSWORD`
