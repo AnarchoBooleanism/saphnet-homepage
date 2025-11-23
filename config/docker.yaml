@@ -6,24 +6,20 @@ docker-nginx:
   host: docker-proxy
   port: 2375
 
-docker-main-pve1:
-  host: docker-main.pve1.int-net.saphnet.xyz
+docker-host-pve1:
+  host: docker-host-pve1.int-net.saphnet.xyz
   port: 2375
 
-#docker-main-pve2:
-#  host: docker-main.pve2.int-net.saphnet.xyz
-#  port: 2375
-
-docker-main-pve3:
-  host: docker-main.pve3.int-net.saphnet.xyz
+docker-host-pve3:
+  host: docker-host-pve3.int-net.saphnet.xyz
   port: 2375
 
-docker-main-pve4:
-  host: docker-main.pve4.int-net.saphnet.xyz
+docker-host-pve4:
+  host: docker-host-pve4.int-net.saphnet.xyz
   port: 2375
 
-portainer-control:
-  host: portainer.int-net.saphnet.xyz
+control-server:
+  host: control-server.int-net.saphnet.xyz
   port: 2375
 
 vps1:

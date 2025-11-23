@@ -73,64 +73,13 @@
         widget:
           type: netdata
           url: https://netdata4.int.saphnet.xyz
-
-- Portainer:
-    - Portainer (Main, pve1):
-        icon: portainer.svg
-        href: https://portainer.int.saphnet.xyz
-        description: Containers on main Docker host (pve1)
-        server: docker-main-pve1
-        container: portainer_agent
+    - Netdata (vps1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Rarecloud Starter KVM
         widget:
-            type: portainer
-            url: https://portainer.int.saphnet.xyz
-            env: 5
-            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
-    - Portainer (Main, pve3):
-        icon: portainer.svg
-        href: https://portainer.int.saphnet.xyz
-        description: Containers on main Docker host (pve3)
-        server: docker-main-pve3
-        container: portainer_agent
-        widget:
-            type: portainer
-            url: https://portainer.int.saphnet.xyz
-            env: 8
-            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
-    - Portainer (Main, pve4):
-        icon: portainer.svg
-        href: https://portainer.int.saphnet.xyz
-        description: Containers on main Docker host (pve4)
-        server: docker-main-pve4
-        container: portainer_agent
-        widget:
-            type: portainer
-            url: https://portainer.int.saphnet.xyz
-            env: 9
-            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
-    - Portainer (Nginx):
-        icon: portainer.svg
-        href: https://portainer.int.saphnet.xyz
-        description: Containers on Nginx Docker host
-        server: docker-nginx
-        container: portainer_agent
-        widget:
-            type: portainer
-            url: https://portainer.int.saphnet.xyz
-            env: 4
-            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
-    - Portainer (Control):
-        icon: portainer.svg
-        href: https://portainer.int.saphnet.xyz
-        description: Containers on Portainer control host
-        server: portainer-control
-        container: portainer
-        widget:
-            type: portainer
-            url: https://portainer.int.saphnet.xyz
-            env: 2
-            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
-
+          type: netdata
+          url: https://netdata-vps1.int.saphnet.xyz
 
 - Services:
     - Home Assistant:
@@ -141,6 +90,19 @@
             type: homeassistant
             url: https://ha.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_HA_API_KEY}}
+    - Komodo:
+        icon: /icons/komodo-512x512.png
+        href: https://komodo.int.saphnet.xyz
+        description: System for deploying Docker containers
+        server: control-server
+        container: komodo-core
+        widget: 
+            type: komodo
+            url: https://komodo.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_KOMODO_API_KEY}}
+            secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
+            showSummary: true # optional, default: false. Takes precedence over showStacks
+            showStacks: false # optional, default: false
     - The Void SMP (Remote):
         icon: minecraft.svg
         description: Minecraft SMP server (smp.thevoidpact.xyz)
@@ -151,7 +113,7 @@
         icon: foldingathome.svg
         href: https://fah.int.saphnet.xyz #add your address here
         description: Fighting disease through computing
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: foldingathome
         showStats: true
         widget:
@@ -176,7 +138,7 @@
         icon: /icons/netbootxyz.svg
         href: https://netboot.int.saphnet.xyz
         description: PXE server for loading OSes
-        server: docker-main-pve1
+        server: docker-host-pve1
         container: netbootxyz
         showStats: true
 
@@ -185,7 +147,7 @@
         icon: jellyfin.svg
         href: https://jellyfin.int.saphnet.xyz
         description: Server for managing and streaming media
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: jellyfin
         showStats: true
         widget:
@@ -201,7 +163,7 @@
         icon: radarr.svg
         href: https://radarr.int.saphnet.xyz
         description: Movie collection manager through BitTorrent
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: radarr
         showStats: true
         widget:
@@ -213,7 +175,7 @@
         icon: jackett.svg
         href: https://jackett.int.saphnet.xyz
         description: Proxy server for torrent trackers
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: jackett
         showStats: true
         widget:
@@ -226,7 +188,7 @@
         icon: deluge.svg
         href: https://seedbox.int.saphnet.xyz
         description: Torrent client
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: deluge
         showStats: true
         widget: # No need for Docker stats here
@@ -238,7 +200,7 @@
         icon: /icons/filezilla.svg
         href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
         description: Access downloaded seedbox files
-        server: docker-main-pve3
+        server: docker-host-pve3
         container: deluge-sftp
         showStats: true
 
