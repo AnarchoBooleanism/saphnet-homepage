@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/**' # Avoid issues with Dependabot
 
 env:
   REGISTRY: ghcr.io
