@@ -103,12 +103,6 @@
             secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
             showSummary: true # optional, default: false. Takes precedence over showStacks
             showStacks: false # optional, default: false
-    - The Void SMP (Remote):
-        icon: minecraft.svg
-        description: Minecraft SMP server (smp.thevoidpact.xyz)
-        widget:
-            type: minecraft
-            url: udp://smp.thevoidpact.xyz:25565
     - Folding at Home:
         icon: foldingathome.svg
         href: https://fah.int.saphnet.xyz #add your address here
@@ -141,6 +135,21 @@
         server: docker-host-pve1
         container: netbootxyz
         showStats: true
+
+- Games:
+    - Pterodactyl:
+        icon: pterodactyl.svg
+        description: Panel for managing game servers
+        widget:
+            type: pterodactyl
+            url: https://pterodactyl.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
+    - The Void SMP:
+        icon: minecraft.svg
+        description: Minecraft SMP server (smp.thevoidpact.xyz)
+        widget:
+            type: minecraft
+            url: udp://smp.thevoidpact.xyz:25565
 
 - Media Server:
     - Jellyfin:
