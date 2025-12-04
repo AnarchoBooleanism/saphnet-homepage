@@ -17,3 +17,4 @@ Environment variables to pass secrets to in `homepage.env`:
 - `HOMEPAGE_VAR_DELUGE_PASSWORD`
 - `HOMEPAGE_VAR_NPM_INT_USERNAME`
 - `HOMEPAGE_VAR_NPM_INT_PASSWORD`
+- `HOMEPAGE_VAR_PTERODACTYL_API_KEY`
