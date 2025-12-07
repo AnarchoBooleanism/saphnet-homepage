@@ -229,18 +229,6 @@
             url: https://nginx.int.saphnet.xyz
             username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
-    - Nginx Proxy Manager (vps1):
-        icon: /icons/nginxproxymanager.svg
-        href: https://nginx-vps1.int.saphnet.xyz
-        description: Manage reverse proxies and more
-        server: vps1
-        container: nginx-proxy-manager
-        showStats: true
-        widget:
-            type: npm
-            url: https://nginx-vps1.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
-            password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
     - Filestash:
         icon: /icons/filestash.svg
         href: https://filestash.int.saphnet.xyz
