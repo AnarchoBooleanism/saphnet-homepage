@@ -19,8 +19,6 @@
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
-    disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-    diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
     expanded: true # show the expanded view
     label: Resources (pve1) # optional
 
@@ -31,8 +29,6 @@
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
-    disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-    diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
     expanded: true # show the expanded view
     label: Resources (nas1/pve2) # optional
 
@@ -43,8 +39,6 @@
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
-    disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-    diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
     expanded: true # show the expanded view
     label: Resources (pve3) # optional
 
@@ -55,8 +49,6 @@
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
-    disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-    diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
     expanded: true # show the expanded view
     label: Resources (pve4) # optional
 
@@ -67,8 +59,6 @@
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
-    disk: / # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-    diskUnits: bytes # optional, bytes (default) or bbytes. Only applies to disk
     expanded: true # show the expanded view
     label: Resources (vps1) # optional
 
