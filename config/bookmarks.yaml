@@ -15,6 +15,9 @@
     - VERT:
         - abbr: VT
           href: https://vert.int.saphnet.xyz
+    - Garage (S3):
+        - abbr: GR
+          href: https://garage.nas1.int.saphnet.xyz
 
 - The Void SMP:
     - Dynmap:

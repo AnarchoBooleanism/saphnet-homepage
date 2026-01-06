@@ -13,7 +13,7 @@
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
             node: pve1
-    - TrueNAS Scale (nas1/pve2):
+    - TrueNAS Scale (nas1):
         icon: truenas.svg
         href: https://nas1.int.saphnet.xyz
         description: NAS host for bulk storage
@@ -52,13 +52,13 @@
         widget:
           type: netdata
           url: https://netdata.int.saphnet.xyz
-    - Netdata (nas1/pve2):
+    - Netdata (nas1):
         icon: netdata.svg
         href: https://netdata.int.saphnet.xyz
-        description: Dell Inspiron 3650 Intel Core i5-6400 @ 2.7 GHz
+        description: Dell Inspiron 3650 AMD FX-4350 @ 4.2 GHz
         widget:
           type: netdata
-          url: https://netdata2.int.saphnet.xyz
+          url: https://netdata.nas1.int.saphnet.xyz
     - Netdata (pve3):
         icon: netdata.svg
         href: https://netdata.int.saphnet.xyz
@@ -227,6 +227,18 @@
         widget:
             type: npm
             url: https://nginx.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
+            password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+    - Nginx Proxy Manager (nas1):
+        icon: /icons/nginxproxymanager.svg
+        href: https://nginx.nas1.int.saphnet.xyz
+        description: Manage reverse proxies and more
+        server: nas1
+        container: nginx-proxy-manager
+        showStats: true
+        widget:
+            type: npm
+            url: https://nginx.nas1.int.saphnet.xyz
             username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
     - Filestash:

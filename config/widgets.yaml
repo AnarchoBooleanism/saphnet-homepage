@@ -23,14 +23,14 @@
     label: Resources (pve1) # optional
 
 - glances:
-    url: https://glances2.int.saphnet.xyz
+    url: https://glances.nas1.int.saphnet.xyz
     version: 4 # required only if running glances v4 or higher, defaults to 3
     cpu: true # optional, enabled by default, disable by setting to false
     mem: true # optional, enabled by default, disable by setting to false
     cputemp: true # disabled by default
     uptime: true # disabled by default
     expanded: true # show the expanded view
-    label: Resources (nas1/pve2) # optional
+    label: Resources (nas1) # optional
 
 - glances:
     url: https://glances3.int.saphnet.xyz
