@@ -55,7 +55,7 @@
     - Netdata (nas1):
         icon: netdata.svg
         href: https://netdata.int.saphnet.xyz
-        description: Dell Inspiron 3650 AMD FX-4350 @ 4.2 GHz
+        description: MSI 970A SLI Krait Edition AMD FX-4350 @ 4.2 GHz
         widget:
           type: netdata
           url: https://netdata.nas1.int.saphnet.xyz
