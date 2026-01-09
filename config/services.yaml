@@ -165,7 +165,7 @@
         href: https://glances-vps1.int.saphnet.xyz
         widget:
             type: glances
-            url: https://glances3-vps1.int.saphnet.xyz
+            url: https://glances-vps1.int.saphnet.xyz
             version: 4
             metric: memory
     - Network Usage:
