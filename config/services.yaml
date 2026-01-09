@@ -66,14 +66,14 @@
             type: glances
             url: https://glances.nas1.int.saphnet.xyz
             version: 4
-            metric: network:vmbr0
+            metric: network:eth1
     - CPU Temp:
         href: https://glances.nas1.int.saphnet.xyz
         widget:
             type: glances
             url: https://glances.nas1.int.saphnet.xyz
             version: 4
-            metric: sensor:Package id 0
+            metric: sensor:k10temp 0
 - Glances - pve3:
     - Info:
         href: https://glances3.int.saphnet.xyz
