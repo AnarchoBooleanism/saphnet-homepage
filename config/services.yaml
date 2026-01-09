@@ -2,6 +2,180 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
 
+- Glances - pve1:
+    - Info:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: memory:Package id 0
+- Glances - nas1:
+    - Info:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: memory:Package id 0
+- Glances - pve3:
+    - Info:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: memory:Package id 0
+- Glances - pve4:
+    - Info:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances34.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: memory:Package id 0
+- Glances - vps1:
+    - Info:
+        href: https://glances-vps1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances-vps1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances-vps1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3-vps1.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances-vps1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.int.saphnet.xyz
+            version: 4
+            metric: network:eth0
+
 - Server:
     - Proxmox (pve1):
         icon: proxmox.svg
@@ -43,182 +217,6 @@
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
             node: pve4
-
-- Glances:
-    - pve1:
-        - Info:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: memory:Package id 0
-    - nas1:
-        - Info:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: memory:Package id 0
-    - pve3:
-        - Info:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: memory:Package id 0
-    - pve4:
-        - Info:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances34.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: memory:Package id 0
-    - vps1:
-        - Info:
-            href: https://glances-vps1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances-vps1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances-vps1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3-vps1.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances-vps1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.int.saphnet.xyz
-                version: 4
-                metric: network:eth0
-
 
 - Netdata:
     - Netdata (pve1):
