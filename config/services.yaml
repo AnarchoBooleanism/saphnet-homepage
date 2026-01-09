@@ -37,7 +37,7 @@
             type: glances
             url: https://glances.int.saphnet.xyz
             version: 4
-            metric: memory:Package id 0
+            metric: sensor:Package id 0
 - Glances - nas1:
     - Info:
         href: https://glances.nas1.int.saphnet.xyz
@@ -73,7 +73,7 @@
             type: glances
             url: https://glances.nas1.int.saphnet.xyz
             version: 4
-            metric: memory:Package id 0
+            metric: sensor:Package id 0
 - Glances - pve3:
     - Info:
         href: https://glances3.int.saphnet.xyz
@@ -109,7 +109,7 @@
             type: glances
             url: https://glances3.int.saphnet.xyz
             version: 4
-            metric: memory:Package id 0
+            metric: sensor:Package id 0
 - Glances - pve4:
     - Info:
         href: https://glances4.int.saphnet.xyz
@@ -145,7 +145,7 @@
             type: glances
             url: https://glances4.int.saphnet.xyz
             version: 4
-            metric: memory:Package id 0
+            metric: sensor:Package id 0
 - Glances - vps1:
     - Info:
         href: https://glances-vps1.int.saphnet.xyz
