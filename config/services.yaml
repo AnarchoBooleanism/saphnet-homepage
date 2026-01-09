@@ -44,6 +44,45 @@
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
             node: pve4
 
+- Glances:
+    - pve1:
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: info
+    - nas1:
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: info
+    - pve3:
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: info
+    - pve3 - GPU:
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: gpu:0
+    - pve4:
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: info
+    - vps1:
+        widget:
+            type: glances
+            url: https://glances-vps1.int.saphnet.xyz
+            version: 4
+            metric: info
+
+
 - Netdata:
     - Netdata (pve1):
         icon: netdata.svg

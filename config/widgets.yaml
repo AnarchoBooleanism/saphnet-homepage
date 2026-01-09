@@ -12,55 +12,55 @@
     text_size: 4xl
     text: Hello!
 
-- glances:
-    url: https://glances.int.saphnet.xyz
-    version: 4 # required only if running glances v4 or higher, defaults to 3
-    cpu: true # optional, enabled by default, disable by setting to false
-    mem: true # optional, enabled by default, disable by setting to false
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
-    label: Resources (pve1) # optional
+# - glances:
+#     url: https://glances.int.saphnet.xyz
+#     version: 4 # required only if running glances v4 or higher, defaults to 3
+#     cpu: true # optional, enabled by default, disable by setting to false
+#     mem: true # optional, enabled by default, disable by setting to false
+#     cputemp: true # disabled by default
+#     uptime: true # disabled by default
+#     expanded: true # show the expanded view
+#     label: Resources (pve1) # optional
 
-- glances:
-    url: https://glances.nas1.int.saphnet.xyz
-    version: 4 # required only if running glances v4 or higher, defaults to 3
-    cpu: true # optional, enabled by default, disable by setting to false
-    mem: true # optional, enabled by default, disable by setting to false
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
-    label: Resources (nas1) # optional
+# - glances:
+#     url: https://glances.nas1.int.saphnet.xyz
+#     version: 4 # required only if running glances v4 or higher, defaults to 3
+#     cpu: true # optional, enabled by default, disable by setting to false
+#     mem: true # optional, enabled by default, disable by setting to false
+#     cputemp: true # disabled by default
+#     uptime: true # disabled by default
+#     expanded: true # show the expanded view
+#     label: Resources (nas1) # optional
 
-- glances:
-    url: https://glances3.int.saphnet.xyz
-    version: 4 # required only if running glances v4 or higher, defaults to 3
-    cpu: true # optional, enabled by default, disable by setting to false
-    mem: true # optional, enabled by default, disable by setting to false
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
-    label: Resources (pve3) # optional
+# - glances:
+#     url: https://glances3.int.saphnet.xyz
+#     version: 4 # required only if running glances v4 or higher, defaults to 3
+#     cpu: true # optional, enabled by default, disable by setting to false
+#     mem: true # optional, enabled by default, disable by setting to false
+#     cputemp: true # disabled by default
+#     uptime: true # disabled by default
+#     expanded: true # show the expanded view
+#     label: Resources (pve3) # optional
 
-- glances:
-    url: https://glances4.int.saphnet.xyz
-    version: 4 # required only if running glances v4 or higher, defaults to 3
-    cpu: true # optional, enabled by default, disable by setting to false
-    mem: true # optional, enabled by default, disable by setting to false
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
-    label: Resources (pve4) # optional
+# - glances:
+#     url: https://glances4.int.saphnet.xyz
+#     version: 4 # required only if running glances v4 or higher, defaults to 3
+#     cpu: true # optional, enabled by default, disable by setting to false
+#     mem: true # optional, enabled by default, disable by setting to false
+#     cputemp: true # disabled by default
+#     uptime: true # disabled by default
+#     expanded: true # show the expanded view
+#     label: Resources (pve4) # optional
 
-- glances:
-    url: https://glances-vps1.int.saphnet.xyz
-    version: 4 # required only if running glances v4 or higher, defaults to 3
-    cpu: true # optional, enabled by default, disable by setting to false
-    mem: true # optional, enabled by default, disable by setting to false
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
-    label: Resources (vps1) # optional
+# - glances:
+#     url: https://glances-vps1.int.saphnet.xyz
+#     version: 4 # required only if running glances v4 or higher, defaults to 3
+#     cpu: true # optional, enabled by default, disable by setting to false
+#     mem: true # optional, enabled by default, disable by setting to false
+#     cputemp: true # disabled by default
+#     uptime: true # disabled by default
+#     expanded: true # show the expanded view
+#     label: Resources (vps1) # optional
 
 #- resources:
 #    cpu: true
