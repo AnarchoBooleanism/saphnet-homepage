@@ -408,7 +408,7 @@
         href: https://nginx.nas1.int.saphnet.xyz
         description: Manage reverse proxies and more
         server: nas1
-        container: nginx-proxy-manager
+        container: npm
         showStats: true
         widget:
             type: npm
