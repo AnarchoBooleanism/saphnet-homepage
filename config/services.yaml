@@ -323,10 +323,10 @@
             key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
     - The Void SMP:
         icon: minecraft.svg
-        description: Minecraft SMP server (smp.thevoidpact.xyz)
+        description: Minecraft SMP server (smp.thevoidpact.xyz / smp-int.thevoidpact.xyz)
         widget:
             type: minecraft
-            url: udp://smp.thevoidpact.xyz:25565
+            url: udp://pterodactyl-node-main.int-net.saphnet.xyz:25567
 
 - Media Server:
     - Jellyfin:
