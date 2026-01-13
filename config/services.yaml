@@ -345,29 +345,49 @@
             enableUser: true # optional, defaults to false
             showEpisodeNumber: true # optional, defaults to false
             expandOneStreamToTwoRows: false # optional, defaults to true
+    - Prowlarr:
+        icon: prowlarr.svg
+        href: https://prowlarr.int.saphnet.xyz
+        description: Indexer manager & proxy for the *arr stack
+        server: docker-host-pve3
+        container: prowlarr
+        widget:
+            type: prowlarr
+            url: https://prowlarr.int.saphnet.xyz
+            password: {{HOMEPAGE_VAR_PROWLARR_PASSWORD}}
     - Radarr:
         icon: radarr.svg
         href: https://radarr.int.saphnet.xyz
         description: Movie collection manager through BitTorrent
         server: docker-host-pve3
         container: radarr
-        showStats: true
         widget:
             type: radarr
             url: https://radarr.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
             enableQueue: true # optional, defaults to false
-    - Jackett:
-        icon: jackett.svg
-        href: https://jackett.int.saphnet.xyz
-        description: Proxy server for torrent trackers
+    - Sonarr:
+        icon: sonarr.svg
+        href: https://sonarr.int.saphnet.xyz
+        description: TV show collection manager through BitTorrent
         server: docker-host-pve3
-        container: jackett
-        showStats: true
+        container: sonarr
         widget:
-            type: jackett
-            url: https://jackett.int.saphnet.xyz
-            password: {{HOMEPAGE_VAR_JACKETT_PASSWORD}}
+            type: sonarr
+            url: https://sonarr.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+            enableQueue: true # optional, defaults to false
+    - Sonarr (anime):
+        icon: sonarr.svg
+        href: https://sonarr-anime.int.saphnet.xyz
+        description: TV show collection manager through BitTorrent (for anime)
+        server: docker-host-pve3
+        container: sonarr-anime
+        widget:
+            type: sonarr
+            url: https://sonarr-anime.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}
+            enableQueue: true # optional, defaults to false
 
 - Seedbox:
     - Deluge:
