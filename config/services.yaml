@@ -354,7 +354,7 @@
         widget:
             type: prowlarr
             url: https://prowlarr.int.saphnet.xyz
-            password: {{HOMEPAGE_VAR_PROWLARR_PASSWORD}}
+            password: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
     - Radarr:
         icon: radarr.svg
         href: https://radarr.int.saphnet.xyz
