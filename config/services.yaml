@@ -437,7 +437,7 @@
         href: https://nginx.int.saphnet.xyz
         description: Manage reverse proxies and more
         server: docker-nginx
-        container: nginx-proxy-manager-app-1
+        container: nginx-proxy-manager
         showStats: true
         widget:
             type: npm
