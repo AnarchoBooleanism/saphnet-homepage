@@ -197,6 +197,16 @@
             key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
             enablePools: true
             nasType: scale
+    - Proxmox Backup Server (on nas1):
+        icon: proxmox.svg
+        href: https://pbs.nas1.int.saphnet.xyz
+        description: Backup manager for Proxmox
+        widget:
+            type: proxmoxbackupserver
+            url: https://pbs.nas1.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PBS_USERNAME}}
+            password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
+            datastore: TrueNAS
     - Proxmox (pve3):
         icon: proxmox.svg
         href: https://proxmox.int.saphnet.xyz

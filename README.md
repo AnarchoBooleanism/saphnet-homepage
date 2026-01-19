@@ -6,6 +6,8 @@ To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 Environment variables to pass secrets to in `homepage.env`:
 - `HOMEPAGE_VAR_PROXMOX_USERNAME`
 - `HOMEPAGE_VAR_PROXMOX_PASSWORD`
+- `HOMEPAGE_VAR_PBS_USERNAME`
+- `HOMEPAGE_VAR_PBS_PASSWORD`
 - `HOMEPAGE_VAR_TRUENAS_API_KEY`
 - `HOMEPAGE_VAR_KOMODO_API_KEY`
 - `HOMEPAGE_VAR_KOMODO_SECRET`
