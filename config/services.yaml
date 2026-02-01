@@ -458,7 +458,7 @@
         icon: traefik.svg
         href: https://traefik-vps1.saphnet.xyz
         description: Cloud-native reverse proxy and load balancer
-        server: docker-host-vps1
+        server: vps1
         container: traefik
         showStats: true
         widget:
