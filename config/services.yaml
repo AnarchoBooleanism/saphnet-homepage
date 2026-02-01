@@ -341,14 +341,14 @@
 - Media Server:
     - Jellyfin:
         icon: jellyfin.svg
-        href: https://jellyfin.int.saphnet.xyz
+        href: https://jellyfin.media.int.saphnet.xyz
         description: Server for managing and streaming media
         server: docker-host-pve3
         container: jellyfin
         showStats: true
         widget:
             type: jellyfin
-            url: https://jellyfin.int.saphnet.xyz
+            url: https://jellyfin.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_JELLYFIN_API_KEY}}
             enableBlocks: true # optional, defaults to false
             enableNowPlaying: true # optional, defaults to true
@@ -357,66 +357,66 @@
             expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
         icon: jellyseerr.svg
-        href: https://jellyseerr.int.saphnet.xyz
+        href: https://jellyseerr.media.int.saphnet.xyz
         description: Media request and discovery manager for Jellyfin
         server: docker-host-pve3
         container: jellyseerr
         widget:
             type: jellyseerr
-            url: https://jellyseerr.int.saphnet.xyz
+            url: https://jellyseerr.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_JELLYSEERR_API_KEY}}
     - Prowlarr:
         icon: prowlarr.svg
-        href: https://prowlarr.int.saphnet.xyz
+        href: https://prowlarr.media.int.saphnet.xyz
         description: Indexer manager & proxy for the *arr stack
         server: docker-host-pve3
         container: prowlarr
         widget:
             type: prowlarr
-            url: https://prowlarr.int.saphnet.xyz
+            url: https://prowlarr.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
     - Radarr:
         icon: radarr.svg
-        href: https://radarr.int.saphnet.xyz
+        href: https://radarr.media.int.saphnet.xyz
         description: Movie collection manager through BitTorrent
         server: docker-host-pve3
         container: radarr
         widget:
             type: radarr
-            url: https://radarr.int.saphnet.xyz
+            url: https://radarr.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
             enableQueue: true # optional, defaults to false
     - Radarr (anime):
         icon: radarr.svg
-        href: https://radarr-anime.int.saphnet.xyz
+        href: https://radarr-anime.media.int.saphnet.xyz
         description: Movie collection manager through BitTorrent (for anime)
         server: docker-host-pve3
         container: radarr-anime
         widget:
             type: radarr
-            url: https://radarr-anime.int.saphnet.xyz
+            url: https://radarr-anime.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_RADARR_ANIME_API_KEY}}
             enableQueue: true # optional, defaults to false
     - Sonarr:
         icon: sonarr.svg
-        href: https://sonarr.int.saphnet.xyz
+        href: https://sonarr.media.int.saphnet.xyz
         description: TV show collection manager through BitTorrent
         server: docker-host-pve3
         container: sonarr
         widget:
             type: sonarr
-            url: https://sonarr.int.saphnet.xyz
+            url: https://sonarr.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
             enableQueue: true # optional, defaults to false
     - Sonarr (anime):
         icon: sonarr.svg
-        href: https://sonarr-anime.int.saphnet.xyz
+        href: https://sonarr-anime.media.int.saphnet.xyz
         description: TV show collection manager through BitTorrent (for anime)
         server: docker-host-pve3
         container: sonarr-anime
         widget:
             type: sonarr
-            url: https://sonarr-anime.int.saphnet.xyz
+            url: https://sonarr-anime.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}
             enableQueue: true # optional, defaults to false
 
@@ -440,6 +440,32 @@
         server: docker-host-pve3
         container: deluge-sftp
         showStats: true
+
+- Traefik:
+    - Traefik (docker-host-pve3):
+        icon: traefik.svg
+        href: https://traefik-pve3.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: docker-host-pve3
+        container: traefik
+        showStats: true
+        widget:
+            type: traefik
+            url: https://traefik-pve3.int.saphnet.xyz
+            username: admin
+            password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+    - Traefik (vps1):
+        icon: traefik.svg
+        href: https://traefik-vps1.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: docker-host-vps1
+        container: traefik
+        showStats: true
+        widget:
+            type: traefik
+            url: https://traefik-vps1.saphnet.xyz
+            username: admin
+            password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
 
 - Utilities:
     - Nginx Proxy Manager:
