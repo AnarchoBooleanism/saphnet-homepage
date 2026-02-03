@@ -442,6 +442,18 @@
         showStats: true
 
 - Traefik:
+    - Traefik (docker-host-core):
+        icon: traefik.svg
+        href: https://traefik-core.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: docker-host-core
+        container: traefik
+        showStats: true
+        widget:
+            type: traefik
+            url: https://traefik-core.int.saphnet.xyz
+            username: admin
+            password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
     - Traefik (docker-host-pve3):
         icon: traefik.svg
         href: https://traefik-pve3.int.saphnet.xyz
@@ -480,18 +492,18 @@
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
 
 - Utilities:
-    - Nginx Proxy Manager:
-        icon: /icons/nginxproxymanager.svg
-        href: https://nginx.int.saphnet.xyz
-        description: Manage reverse proxies and more
-        server: docker-host-core
-        container: nginx-proxy-manager
-        showStats: true
-        widget:
-            type: npm
-            url: https://nginx.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
-            password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+    # - Nginx Proxy Manager:
+    #     icon: /icons/nginxproxymanager.svg
+    #     href: https://nginx.int.saphnet.xyz
+    #     description: Manage reverse proxies and more
+    #     server: docker-host-core
+    #     container: nginx-proxy-manager
+    #     showStats: true
+    #     widget:
+    #         type: npm
+    #         url: https://nginx.int.saphnet.xyz
+    #         username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
+    #         password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
     - Nginx Proxy Manager (haos):
         icon: /icons/nginxproxymanager.svg
         href: https://nginx.ha.int.saphnet.xyz
