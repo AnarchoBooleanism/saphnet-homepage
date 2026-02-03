@@ -316,7 +316,7 @@
         icon: /icons/netbootxyz.svg
         href: https://netboot.int.saphnet.xyz
         description: PXE server for loading OSes
-        server: docker-host-nginx
+        server: docker-nginx
         container: netbootxyz
         showStats: true
 
