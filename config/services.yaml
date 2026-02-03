@@ -454,6 +454,18 @@
             url: https://traefik-pve3.int.saphnet.xyz
             username: admin
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+    - Traefik (docker-host-pve4):
+        icon: traefik.svg
+        href: https://traefik-pve4.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: docker-host-pve4
+        container: traefik
+        showStats: true
+        widget:
+            type: traefik
+            url: https://traefik-pve4.int.saphnet.xyz
+            username: admin
+            password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
     - Traefik (vps1):
         icon: traefik.svg
         href: https://traefik-vps1.saphnet.xyz
