@@ -316,7 +316,7 @@
         icon: /icons/netbootxyz.svg
         href: https://netboot.int.saphnet.xyz
         description: PXE server for loading OSes
-        server: docker-nginx
+        server: docker-host-core
         container: netbootxyz
         showStats: true
 
@@ -325,7 +325,7 @@
         icon: pterodactyl.svg
         href: https://pterodactyl.int.saphnet.xyz
         description: Panel for managing game servers
-        server: docker-nginx
+        server: docker-host-core
         container: pterodactyl-panel
         widget:
             type: pterodactyl
@@ -472,7 +472,7 @@
         icon: /icons/nginxproxymanager.svg
         href: https://nginx.int.saphnet.xyz
         description: Manage reverse proxies and more
-        server: docker-nginx
+        server: docker-host-core
         container: nginx-proxy-manager
         showStats: true
         widget:
@@ -496,13 +496,13 @@
         icon: /icons/filestash.svg
         href: https://filestash.int.saphnet.xyz
         description: Access file servers via web UI
-        server: docker-nginx
+        server: docker-host-core
         container: filestash
         showStats: true
     - Guacamole:
         icon: guacamole.svg
         href: https://guacamole.int.saphnet.xyz
         description: Remotely connect to systems via web UI
-        server: docker-nginx
+        server: docker-host-core
         container: guacamole
         showStats: true

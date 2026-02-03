@@ -11,7 +11,7 @@
           href: https://speedtest.int.saphnet.xyz
     - OpenSpeedTest (http):
         - abbr: OST
-          href: http://nginx.int-net.saphnet.xyz:3000
+          href: http://docker-host-core.int-net.saphnet.xyz:3000
     - VERT:
         - abbr: VT
           href: https://vert.int.saphnet.xyz
