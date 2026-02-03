@@ -480,6 +480,15 @@
             url: https://nginx.int.saphnet.xyz
             username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
             password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+    - Nginx Proxy Manager (haos):
+        icon: /icons/nginxproxymanager.svg
+        href: https://nginx.ha.int.saphnet.xyz
+        description: Manage reverse proxies and more
+        widget:
+            type: npm
+            url: https://nginx.ha.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
+            password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
     - Nginx Proxy Manager (nas1):
         icon: /icons/nginxproxymanager.svg
         href: https://nginx.nas1.int.saphnet.xyz
