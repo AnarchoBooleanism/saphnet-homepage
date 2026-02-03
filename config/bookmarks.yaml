@@ -18,6 +18,9 @@
     - Garage (S3):
         - abbr: GR
           href: https://garage.nas1.int.saphnet.xyz
+    - Home Assistant Observer:
+        - abbr: HAO
+          href: https://observer.ha.int.saphnet.xyz
 
 - The Void SMP:
     - Dynmap:
