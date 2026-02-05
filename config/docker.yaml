@@ -10,10 +10,6 @@ docker-host-core:
   host: docker-proxy
   port: 2375
 
-# docker-host-pve1:
-#   host: docker-host-pve1.int-net.saphnet.xyz
-#   port: 2375
-
 docker-host-pve3:
   host: docker-host-pve3.int-net.saphnet.xyz
   port: 2375
