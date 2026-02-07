@@ -274,6 +274,15 @@
             type: homeassistant
             url: https://ha.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_HA_API_KEY}}
+    - Immich:
+        icon: immich.svg
+        href: https://immich.int.saphnet.xyz
+        description: Self-hosted photo and video management solution
+        widget:
+            type: immich
+            url: https://immich.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_IMMICH_API_KEY}}
+            version: 2
     - Komodo:
         icon: /icons/komodo-512x512.png
         href: https://komodo.int.saphnet.xyz
