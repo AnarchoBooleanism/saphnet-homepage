@@ -278,6 +278,8 @@
         icon: immich.svg
         href: https://immich.int.saphnet.xyz
         description: Self-hosted photo and video management solution
+        server: docker-host-pve3
+        container: immich_server
         widget:
             type: immich
             url: https://immich.int.saphnet.xyz
