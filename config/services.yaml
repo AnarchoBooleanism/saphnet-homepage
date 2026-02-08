@@ -148,31 +148,31 @@
             metric: sensor:Package id 0
 - Glances - vps1:
     - Info:
-        href: https://glances-vps1.int.saphnet.xyz
+        href: https://glances-vps1.saphnet.xyz
         widget:
             type: glances
-            url: https://glances-vps1.int.saphnet.xyz
+            url: https://glances-vps1.saphnet.xyz
             version: 4
             metric: info
     - CPU Usage:
-        href: https://glances-vps1.int.saphnet.xyz
+        href: https://glances-vps1.saphnet.xyz
         widget:
             type: glances
-            url: https://glances-vps1.int.saphnet.xyz
+            url: https://glances-vps1.saphnet.xyz
             version: 4
             metric: cpu
     - Memory Usage:
-        href: https://glances-vps1.int.saphnet.xyz
+        href: https://glances-vps1.saphnet.xyz
         widget:
             type: glances
-            url: https://glances-vps1.int.saphnet.xyz
+            url: https://glances-vps1.saphnet.xyz
             version: 4
             metric: memory
     - Network Usage:
-        href: https://glances-vps1.int.saphnet.xyz
+        href: https://glances-vps1.saphnet.xyz
         widget:
             type: glances
-            url: https://glances-vps1.int.saphnet.xyz
+            url: https://glances-vps1.saphnet.xyz
             version: 4
             metric: network:eth0
 
