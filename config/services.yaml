@@ -455,38 +455,38 @@
 - Traefik:
     - Traefik (docker-host-core):
         icon: traefik.svg
-        href: https://traefik-core.int.saphnet.xyz
+        href: https://docker-host-core.int.saphnet.xyz
         description: Cloud-native reverse proxy and load balancer
         server: docker-host-core
         container: traefik
         showStats: true
         widget:
             type: traefik
-            url: https://traefik-core.int.saphnet.xyz
+            url: https://docker-host-core.int.saphnet.xyz
             username: admin
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
     - Traefik (docker-host-pve3):
         icon: traefik.svg
-        href: https://traefik-pve3.int.saphnet.xyz
+        href: https://docker-host-pve3.int.saphnet.xyz
         description: Cloud-native reverse proxy and load balancer
         server: docker-host-pve3
         container: traefik
         showStats: true
         widget:
             type: traefik
-            url: https://traefik-pve3.int.saphnet.xyz
+            url: https://docker-host-pve3.int.saphnet.xyz
             username: admin
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
     - Traefik (docker-host-pve4):
         icon: traefik.svg
-        href: https://traefik-pve4.int.saphnet.xyz
+        href: https://docker-host-pve4.int.saphnet.xyz
         description: Cloud-native reverse proxy and load balancer
         server: docker-host-pve4
         container: traefik
         showStats: true
         widget:
             type: traefik
-            url: https://traefik-pve4.int.saphnet.xyz
+            url: https://docker-host-pve4.int.saphnet.xyz
             username: admin
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
     - Traefik (vps1):

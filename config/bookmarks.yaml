@@ -21,6 +21,15 @@
     - Home Assistant Observer:
         - abbr: HAO
           href: https://observer.ha.int.saphnet.xyz
+    - Glances - docker-host-core:
+        - abbr: GC
+          href: https://glances.docker-host-core.int.saphnet.xyz
+    - Glances - docker-host-pve3:
+        - abbr: G3
+          href: https://glances.docker-host-pve3.int.saphnet.xyz
+    - Glances - docker-host-pve4:
+        - abbr: G4
+          href: https://glances.docker-host-pve4.int.saphnet.xyz
 
 - The Void SMP:
     - Dynmap:
