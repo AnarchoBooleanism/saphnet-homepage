@@ -203,7 +203,7 @@
         description: Backup manager for Proxmox
         widget:
             type: proxmoxbackupserver
-            url: https://pbs.nas1.int-net.saphnet.xyz:8007
+            url: https://pbs.nas1.int.saphnet.xyz
             username: {{HOMEPAGE_VAR_PBS_USERNAME}}
             password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
             datastore: TrueNAS
