@@ -179,7 +179,7 @@
 - Server:
     - Proxmox (pve1):
         icon: proxmox.svg
-        href: https://proxmox.int.saphnet.xyz
+        href: https://pve1.int.saphnet.xyz
         description: Primary hypervisor, on laptop
         widget:
             type: proxmox
@@ -213,13 +213,13 @@
         description: Hypervisor, on desktop
         widget:
             type: proxmox
-            url: https://proxmox.int.saphnet.xyz
+            url: https://pve3.int.saphnet.xyz
             username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
             password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
             node: pve3
     - Proxmox (pve4):
         icon: proxmox.svg
-        href: https://proxmox.int.saphnet.xyz
+        href: https://pve4.int.saphnet.xyz
         description: Hypervisor, on desktop
         widget:
             type: proxmox
