@@ -3,6 +3,9 @@
 # https://gethomepage.dev/configs/bookmarks
 
 - Internal:
+    - n8n:
+        - abbr: N8
+          href: https://n8n.int.saphnet.xyz
     - Router:
         - abbr: RT
           href: https://router.int.saphnet.xyz
