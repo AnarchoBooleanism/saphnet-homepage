@@ -330,6 +330,22 @@
         server: docker-host-core
         container: netbootxyz
         showStats: true
+    - n8n:
+        icon: n8n.svg
+        href: https://n8n.int.saphnet.xyz
+        description: Workflow automation platform, with the flexibility of code and the speed of no-code
+        server: docker-host-core
+        container: n8n
+        widget:
+            type: customapi
+            url: https://n8n.int.saphnet.xyz/webhook/8d6d1d45-288e-44c3-8731-3ae273a0208e
+            mappings:
+                - field: workflows
+                  label: Workflows
+                  format: number
+                - field: executions
+                  label: Executions
+                  format: number
 
 - Games:
     - Pterodactyl:
