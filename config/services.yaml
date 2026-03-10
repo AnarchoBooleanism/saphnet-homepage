@@ -73,7 +73,7 @@
             type: glances
             url: https://glances.nas1.int.saphnet.xyz
             version: 4
-            metric: sensor:k10temp 0
+            metric: sensor:Package id 0
 - Glances - pve3:
     - Info:
         href: https://glances3.int.saphnet.xyz
@@ -239,7 +239,7 @@
     - Netdata (nas1):
         icon: netdata.svg
         href: https://netdata.int.saphnet.xyz
-        description: MSI 970A SLI Krait Edition AMD FX-4350 @ 4.2 GHz
+        description: GIGABYTE G1.Sniper Z5S Intel Core i7-4770S @ 3.1 GHz
         widget:
           type: netdata
           url: https://netdata.nas1.int.saphnet.xyz
