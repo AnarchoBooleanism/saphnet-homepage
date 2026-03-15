@@ -306,7 +306,7 @@
         container: n8n
         widget:
             type: customapi
-            url: https://n8n.int.saphnet.xyz/webhook/8d6d1d45-288e-44c3-8731-3ae273a0208e
+            url: https://n8n.int.saphnet.xyz/api/homepage-custom
             mappings:
                 - field: workflows
                   label: Workflows
