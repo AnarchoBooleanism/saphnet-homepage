@@ -1,3 +1,3 @@
-FROM ghcr.io/gethomepage/homepage:v1.10.1
+FROM ghcr.io/gethomepage/homepage:v1.11.0
 COPY config /app/config
 COPY icons /app/public/icons
