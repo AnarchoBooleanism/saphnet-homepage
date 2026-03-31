@@ -382,16 +382,16 @@
             enableUser: true # optional, defaults to false
             showEpisodeNumber: true # optional, defaults to false
             expandOneStreamToTwoRows: false # optional, defaults to true
-    - Jellyseerr:
-        icon: jellyseerr.svg
-        href: https://jellyseerr.media.int.saphnet.xyz
+    - Seerr:
+        icon: seerr.svg
+        href: https://seerr.media.int.saphnet.xyz
         description: Media request and discovery manager for Jellyfin
         server: docker-host-pve3
-        container: jellyseerr
+        container: seerr
         widget:
-            type: jellyseerr
-            url: https://jellyseerr.media.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_JELLYSEERR_API_KEY}}
+            type: seerr
+            url: https://seerr.media.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_SEERR_API_KEY}}
     - Prowlarr:
         icon: prowlarr.svg
         href: https://prowlarr.media.int.saphnet.xyz
