@@ -38,9 +38,9 @@
   - Jellyfin:
     - abbr: JF
       href: https://jellyfin.media.saphnet.xyz
-  - Jellyseerr:
-    - abbr: JS
-      href: https://jellyseerr.media.saphnet.xyz
+  - Seerr:
+    - abbr: SR
+      href: https://seerr.media.saphnet.xyz
   - Immich:
     - abbr: IM
       href: https://immich.saphnet.xyz
