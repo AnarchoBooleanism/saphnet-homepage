@@ -239,7 +239,7 @@
     - Netdata (nas1):
         icon: netdata.svg
         href: https://netdata.int.saphnet.xyz
-        description: GIGABYTE G1.Sniper Z5S Intel Core i7-4770S @ 3.1 GHz
+        description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
         widget:
           type: netdata
           url: https://netdata.nas1.int.saphnet.xyz
