@@ -2,6 +2,8 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/settings/
 
+title: Sapphic Homepage
+description: A dashboard for the Sapphic Homelab/Home Server
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
