@@ -11,7 +11,9 @@ target: _blank
 # Styling
 background:
   image: "/images/529d1d2c28b4d7a1d1910cf6fbf3b2d7cad8349a_resized.webp"
-  blur: sm
+  blur: md
+  brightness: 50
+theme: dark
 headerStyle: underlined
 layout:
   Services:
