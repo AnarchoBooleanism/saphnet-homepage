@@ -10,9 +10,8 @@ target: _blank
 
 # Styling
 background:
-  image: "/images/529d1d2c28b4d7a1d1910cf6fbf3b2d7cad8349a_resized.webp"
+  image: "/images/529d1d2c28b4d7a1d1910cf6fbf3b2d7cad8349a_resized_darkened.webp"
   blur: md
-  brightness: 20
 theme: dark
 headerStyle: underlined
 layout:
