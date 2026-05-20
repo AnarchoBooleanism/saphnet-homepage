@@ -12,7 +12,7 @@ target: _blank
 background:
   image: "/images/529d1d2c28b4d7a1d1910cf6fbf3b2d7cad8349a_resized.webp"
   blur: md
-  brightness: 40
+  brightness: 30
 theme: dark
 headerStyle: underlined
 layout:
