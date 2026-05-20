@@ -9,7 +9,7 @@ description: A dashboard for the Sapphic Homelab/Home Server
 target: _blank
 
 # Styling
-headerStyle: boxed
+headerStyle: underlined
 layout:
   Services:
     style: row
