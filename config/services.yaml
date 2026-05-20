@@ -2,269 +2,6 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
 
-- Glances - pve1:
-    - Info:
-        href: https://glances.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.int.saphnet.xyz
-            version: 4
-            metric: info
-    - CPU Usage:
-        href: https://glances.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.int.saphnet.xyz
-            version: 4
-            metric: cpu
-    - Memory Usage:
-        href: https://glances.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.int.saphnet.xyz
-            version: 4
-            metric: memory
-    - Network Usage:
-        href: https://glances.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.int.saphnet.xyz
-            version: 4
-            metric: network:vmbr0
-    - CPU Temp:
-        href: https://glances.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.int.saphnet.xyz
-            version: 4
-            metric: sensor:Package id 0
-- Glances - nas1:
-    - Info:
-        href: https://glances.nas1.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.nas1.int.saphnet.xyz
-            version: 4
-            metric: info
-    - CPU Usage:
-        href: https://glances.nas1.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.nas1.int.saphnet.xyz
-            version: 4
-            metric: cpu
-    - Memory Usage:
-        href: https://glances.nas1.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.nas1.int.saphnet.xyz
-            version: 4
-            metric: memory
-    - Network Usage:
-        href: https://glances.nas1.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.nas1.int.saphnet.xyz
-            version: 4
-            metric: network:enp6s0f0np0
-    - CPU Temp:
-        href: https://glances.nas1.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances.nas1.int.saphnet.xyz
-            version: 4
-            metric: sensor:Package id 0
-- Glances - pve3:
-    - Info:
-        href: https://glances3.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances3.int.saphnet.xyz
-            version: 4
-            metric: info
-    - CPU Usage:
-        href: https://glances3.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances3.int.saphnet.xyz
-            version: 4
-            metric: cpu
-    - Memory Usage:
-        href: https://glances3.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances3.int.saphnet.xyz
-            version: 4
-            metric: memory
-    - Network Usage:
-        href: https://glances3.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances3.int.saphnet.xyz
-            version: 4
-            metric: network:vmbr0
-    - CPU Temp:
-        href: https://glances3.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances3.int.saphnet.xyz
-            version: 4
-            metric: sensor:Package id 0
-- Glances - pve4:
-    - Info:
-        href: https://glances4.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances4.int.saphnet.xyz
-            version: 4
-            metric: info
-    - CPU Usage:
-        href: https://glances4.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances4.int.saphnet.xyz
-            version: 4
-            metric: cpu
-    - Memory Usage:
-        href: https://glances34.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances4.int.saphnet.xyz
-            version: 4
-            metric: memory
-    - Network Usage:
-        href: https://glances4.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances4.int.saphnet.xyz
-            version: 4
-            metric: network:vmbr0
-    - CPU Temp:
-        href: https://glances4.int.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances4.int.saphnet.xyz
-            version: 4
-            metric: sensor:Package id 0
-- Glances - vps1:
-    - Info:
-        href: https://glances-vps1.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances-vps1.saphnet.xyz
-            version: 4
-            metric: info
-    - CPU Usage:
-        href: https://glances-vps1.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances-vps1.saphnet.xyz
-            version: 4
-            metric: cpu
-    - Memory Usage:
-        href: https://glances-vps1.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances-vps1.saphnet.xyz
-            version: 4
-            metric: memory
-    - Network Usage:
-        href: https://glances-vps1.saphnet.xyz
-        widget:
-            type: glances
-            url: https://glances-vps1.saphnet.xyz
-            version: 4
-            metric: network:eth0
-
-- Server:
-    - Proxmox (pve1):
-        icon: proxmox.svg
-        href: https://pve1.int.saphnet.xyz
-        description: Primary hypervisor, on laptop
-        widget:
-            type: proxmox
-            url: https://pve1.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
-            node: pve1
-    - TrueNAS Scale (nas1):
-        icon: truenas.svg
-        href: https://nas1.int.saphnet.xyz
-        description: NAS host for bulk storage
-        widget:
-            type: truenas
-            url: https://nas1.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
-            enablePools: true
-            nasType: scale
-    - Proxmox Backup Server (on nas1):
-        icon: proxmox.svg
-        href: https://pbs.nas1.int.saphnet.xyz
-        description: Backup manager for Proxmox
-        widget:
-            type: proxmoxbackupserver
-            url: https://pbs.nas1.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PBS_USERNAME}}
-            password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
-            datastore: TrueNAS
-    - Proxmox (pve3):
-        icon: proxmox.svg
-        href: https://pve3.int.saphnet.xyz
-        description: Hypervisor, on desktop
-        widget:
-            type: proxmox
-            url: https://pve3.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
-            node: pve3
-    - Proxmox (pve4):
-        icon: proxmox.svg
-        href: https://pve4.int.saphnet.xyz
-        description: Hypervisor, on desktop
-        widget:
-            type: proxmox
-            url: https://pve4.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
-            node: pve4
-
-- Netdata:
-    - Netdata (pve1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
-        widget:
-          type: netdata
-          url: https://netdata.int.saphnet.xyz
-    - Netdata (nas1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
-        widget:
-          type: netdata
-          url: https://netdata.nas1.int.saphnet.xyz
-    - Netdata (pve3):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: Dell OptiPlex 7020 Intel Core i7-4770 @ 3.4 GHz
-        widget:
-          type: netdata
-          url: https://netdata3.int.saphnet.xyz
-    - Netdata (pve4):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
-        widget:
-          type: netdata
-          url: https://netdata4.int.saphnet.xyz
-    - Netdata (vps1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: Rarecloud Starter KVM
-        widget:
-          type: netdata
-          url: https://netdata-vps1.int.saphnet.xyz
-
 - Services:
     - Home Assistant:
         icon: /icons/homeassistant.svg
@@ -519,18 +256,6 @@
             password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
 
 - Utilities:
-    # - Nginx Proxy Manager:
-    #     icon: /icons/nginxproxymanager.svg
-    #     href: https://nginx.int.saphnet.xyz
-    #     description: Manage reverse proxies and more
-    #     server: docker-host-core
-    #     container: nginx-proxy-manager
-    #     showStats: true
-    #     widget:
-    #         type: npm
-    #         url: https://nginx.int.saphnet.xyz
-    #         username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
-    #         password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
     - Nginx Proxy Manager (haos):
         icon: /icons/nginxproxymanager.svg
         href: https://nginx.ha.int.saphnet.xyz
@@ -566,3 +291,266 @@
         server: docker-host-core
         container: guacamole
         showStats: true
+
+- Server:
+    - Proxmox (pve1):
+        icon: proxmox.svg
+        href: https://pve1.int.saphnet.xyz
+        description: Primary hypervisor, on laptop
+        widget:
+            type: proxmox
+            url: https://pve1.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve1
+    - TrueNAS Scale (nas1):
+        icon: truenas.svg
+        href: https://nas1.int.saphnet.xyz
+        description: NAS host for bulk storage
+        widget:
+            type: truenas
+            url: https://nas1.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
+            enablePools: true
+            nasType: scale
+    - Proxmox Backup Server (on nas1):
+        icon: proxmox.svg
+        href: https://pbs.nas1.int.saphnet.xyz
+        description: Backup manager for Proxmox
+        widget:
+            type: proxmoxbackupserver
+            url: https://pbs.nas1.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PBS_USERNAME}}
+            password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
+            datastore: TrueNAS
+    - Proxmox (pve3):
+        icon: proxmox.svg
+        href: https://pve3.int.saphnet.xyz
+        description: Hypervisor, on desktop
+        widget:
+            type: proxmox
+            url: https://pve3.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve3
+    - Proxmox (pve4):
+        icon: proxmox.svg
+        href: https://pve4.int.saphnet.xyz
+        description: Hypervisor, on desktop
+        widget:
+            type: proxmox
+            url: https://pve4.int.saphnet.xyz
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            node: pve4
+
+- Netdata:
+    - Netdata (pve1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
+        widget:
+          type: netdata
+          url: https://netdata.int.saphnet.xyz
+    - Netdata (nas1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
+        widget:
+          type: netdata
+          url: https://netdata.nas1.int.saphnet.xyz
+    - Netdata (pve3):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 7020 Intel Core i7-4770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata3.int.saphnet.xyz
+    - Netdata (pve4):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata4.int.saphnet.xyz
+    - Netdata (vps1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Rarecloud Starter KVM
+        widget:
+          type: netdata
+          url: https://netdata-vps1.int.saphnet.xyz
+
+- Glances - pve1:
+    - Info:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.int.saphnet.xyz
+            version: 4
+            metric: sensor:Package id 0
+- Glances - nas1:
+    - Info:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: network:enp6s0f0np0
+    - CPU Temp:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances.nas1.int.saphnet.xyz
+            version: 4
+            metric: sensor:Package id 0
+- Glances - pve3:
+    - Info:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances3.int.saphnet.xyz
+            version: 4
+            metric: sensor:Package id 0
+- Glances - pve4:
+    - Info:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances34.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances4.int.saphnet.xyz
+            version: 4
+            metric: sensor:Package id 0
+- Glances - vps1:
+    - Info:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.saphnet.xyz
+            version: 4
+            metric: info
+    - CPU Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.saphnet.xyz
+            version: 4
+            metric: cpu
+    - Memory Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.saphnet.xyz
+            version: 4
+            metric: memory
+    - Network Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+            type: glances
+            url: https://glances-vps1.saphnet.xyz
+            version: 4
+            metric: network:eth0

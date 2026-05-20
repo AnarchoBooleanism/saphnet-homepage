@@ -4,6 +4,26 @@
 
 title: Sapphic Homepage
 description: A dashboard for the Sapphic Homelab/Home Server
-providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
+
+# Functionality
+target: _blank
+
+# Styling
+headerStyle: clean
+layout:
+  Services:
+    style: row
+  Games:
+    style: row
+  Media Server:
+    style: row
+  Seedbox:
+    style: row
+  Traefik:
+    style: row
+  Utilities:
+    style: row
+
+# providers:
+#   openweathermap: openweathermapapikey
+#   weatherapi: weatherapiapikey
