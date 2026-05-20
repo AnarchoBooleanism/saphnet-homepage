@@ -83,6 +83,25 @@
         server: docker-host-core
         container: netbootxyz
         showStats: true
+    - Deluge:
+        icon: deluge.svg
+        href: https://seedbox.int.saphnet.xyz
+        description: Torrent client
+        server: docker-host-pve3
+        container: deluge
+        showStats: true
+        widget: # No need for Docker stats here
+            type: deluge
+            url: https://seedbox.int.saphnet.xyz
+            password: {{HOMEPAGE_VAR_DELUGE_PASSWORD}}
+            enableLeechProgress: true
+    - Deluge SFTP:
+        icon: /icons/filezilla.svg
+        href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
+        description: Access downloaded seedbox files
+        server: docker-host-pve3
+        container: deluge-sftp
+        showStats: true
 
 - Games:
     - Pterodactyl:
@@ -183,27 +202,6 @@
             url: https://sonarr-anime.media.int.saphnet.xyz
             key: {{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}
             enableQueue: true # optional, defaults to false
-
-- Seedbox:
-    - Deluge:
-        icon: deluge.svg
-        href: https://seedbox.int.saphnet.xyz
-        description: Torrent client
-        server: docker-host-pve3
-        container: deluge
-        showStats: true
-        widget: # No need for Docker stats here
-            type: deluge
-            url: https://seedbox.int.saphnet.xyz
-            password: {{HOMEPAGE_VAR_DELUGE_PASSWORD}}
-            enableLeechProgress: true
-    - Deluge SFTP:
-        icon: /icons/filezilla.svg
-        href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
-        description: Access downloaded seedbox files
-        server: docker-host-pve3
-        container: deluge-sftp
-        showStats: true
 
 - Traefik:
     - Traefik (docker-host-core):
