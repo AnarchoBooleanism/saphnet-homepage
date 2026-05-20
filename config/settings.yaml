@@ -11,26 +11,11 @@ target: _blank
 # Styling
 background:
   image: "/images/529d1d2c28b4d7a1d1910cf6fbf3b2d7cad8349a_resized_darkened.webp"
-  blur: md
+  blur: xl
 theme: dark
 headerStyle: underlined
 layout:
   Services:
-    style: row
-    columns: 4
-  Games:
-    style: row
-    columns: 4
-  Media Server:
-    style: row
-    columns: 4
-  Seedbox:
-    style: row
-    columns: 4
-  Traefik:
-    style: row
-    columns: 4
-  Utilities:
     style: row
     columns: 4
   Server:
