@@ -14,21 +14,21 @@ layout:
   Services:
     style: row
     columns: 4
-  # Games:
-  #   style: row
-  #   columns: 4
-  # Media Server:
-  #   style: row
-  #   columns: 4
-  # Seedbox:
-  #   style: row
-  #   columns: 4
-  # Traefik:
-  #   style: row
-  #   columns: 4
-  # Utilities:
-  #   style: row
-  #   columns: 4
+  Games:
+    style: row
+    columns: 4
+  Media Server:
+    style: row
+    columns: 4
+  Seedbox:
+    style: row
+    columns: 4
+  Traefik:
+    style: row
+    columns: 4
+  Utilities:
+    style: row
+    columns: 4
 
 # providers:
 #   openweathermap: openweathermapapikey
