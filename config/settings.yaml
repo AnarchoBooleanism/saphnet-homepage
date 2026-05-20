@@ -13,16 +13,22 @@ headerStyle: clean
 layout:
   Services:
     style: row
+    columns: 5
   Games:
     style: row
+    columns: 5
   Media Server:
     style: row
+    columns: 5
   Seedbox:
     style: row
+    columns: 5
   Traefik:
     style: row
+    columns: 5
   Utilities:
     style: row
+    columns: 5
 
 # providers:
 #   openweathermap: openweathermapapikey
