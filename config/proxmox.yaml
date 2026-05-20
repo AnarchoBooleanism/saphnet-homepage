@@ -2,3 +2,18 @@
 # url: https://proxmox.host.or.ip:8006
 # token: username@pam!Token ID
 # secret: secret
+
+pve1:
+  url: https://pve1.int.saphnet.xyz
+  token: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+  secret: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+
+pve3:
+  url: https://pve3.int.saphnet.xyz
+  token: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+  secret: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+
+pve4:
+  url: https://pve4.int.saphnet.xyz
+  token: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+  secret: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
