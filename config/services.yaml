@@ -362,7 +362,7 @@
         - Netdata (pve3):
             icon: netdata.svg
             href: https://netdata.int.saphnet.xyz
-            description: Dell OptiPlex 7020 Intel Core i7-4770 @ 3.4 GHz
+            description: Dell OptiPlex 9020 Intel Core i7-4770 @ 3.4 GHz
             widget:
                 type: netdata
                 url: https://netdata3.int.saphnet.xyz
