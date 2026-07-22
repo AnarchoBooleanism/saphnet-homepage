@@ -4,6 +4,7 @@
 
 - datetime:
     text_size: md
+    locale: sv-SE
     format:
       dateStyle: short
       timeStyle: short
