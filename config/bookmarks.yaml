@@ -6,6 +6,9 @@
     - Router:
         - abbr: RT
           href: https://router.int.saphnet.xyz
+    - Switch (switch1):
+        - abbr: SW
+          href: https://switch1.int.saphnet.xyz
     - OpenSpeedTest:
         - abbr: OST
           href: https://speedtest.int.saphnet.xyz

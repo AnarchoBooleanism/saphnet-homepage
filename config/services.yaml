@@ -445,7 +445,7 @@
                 type: glances
                 url: https://glances.nas1.int.saphnet.xyz
                 version: 4
-                metric: network:enp6s0f0np0
+                metric: network:bond0
         - CPU Temp:
             href: https://glances.nas1.int.saphnet.xyz
             widget:
