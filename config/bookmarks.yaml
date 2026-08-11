@@ -49,9 +49,12 @@
       href: https://immich.saphnet.xyz
 
 - The Void SMP:
-    - Dynmap:
+    - Bluemap:
         - abbr: DY
           href: https://map.thevoidpact.xyz
+    - Bluemap (internal):
+        - abbr: DY
+          href: https://map-int.thevoidpact.xyz
     - Blog:
         - abbr: BL
           href: https://builds.thevoidpact.xyz
