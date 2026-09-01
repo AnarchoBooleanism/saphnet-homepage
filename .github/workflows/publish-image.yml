@@ -1,13 +1,10 @@
 # Thanks to https://medium.com/neudesic-innovation/building-multi-platform-container-images-with-github-actions-e495f9441ad3
 
-name: Create and push image to GitHub registry
+name: Create and push image to ghcr.io upon release creation
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/**' # Avoid issues with Dependabot
+  release:
+    types: [published]
 
 env:
   REGISTRY: ghcr.io
@@ -40,31 +37,28 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get Docker metadata
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Write fully qualified image name to use
+        run: |
+          IMAGE_NAME_FULL_RAW="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
+          printf "IMAGE_NAME_FULL=%s\n" "${IMAGE_NAME_FULL_RAW,,}" >> $GITHUB_ENV
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
-          push: true
+          # We want to avoid polluting the registry with too many arch-specific tags
+          # We also want to be able to have descriptions
+          outputs: type=registry,name=${{ env.IMAGE_NAME_FULL }},push-by-digest=true,oci-mediatypes=true
           platforms: linux/${{ matrix.architecture }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GIT_VERSION_TAG=${{ env.RELEASE_VERSION }}
-            GIT_COMMIT_MESSAGE=${{ github.event.head_commit.message }}
+            GIT_VERSION_TAG=${{ github.event.release.tag_name }}
             GIT_VERSION_HASH=${{ github.sha }}
-      # - name: Generate artifact attestation # Attestation does not work for private repos
-      #   uses: actions/attest-build-provenance@v4
-      #   with:
-      #     subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      #     subject-digest: ${{ steps.push.outputs.digest }}
-      #     push-to-registry: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          # We want BuildKit attestation
+          provenance: true
+          sbom: true
       - name: Export digest
         run: |
           mkdir -p ${{ runner.temp }}/digests
@@ -105,12 +99,38 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
             type=edge
       - name: Create manifest list and push
+        id: push
         working-directory: ${{ runner.temp }}/digests
         run: |
           IMAGE_NAME_LOWER=${IMAGE_NAME,,}
-          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf "${{ env.REGISTRY }}/${IMAGE_NAME_LOWER}@sha256:%s " *)
-      - name: Inspect Image
-        run: |
-          IMAGE_NAME_LOWER=${IMAGE_NAME,,}
-          docker buildx imagetools inspect ${{ env.REGISTRY }}/${IMAGE_NAME_LOWER}:${{ steps.meta.outputs.version }}
+
+          # Using jq to avoid issues with empty lines and multi-line items
+
+          read -r -a TAG_ARGS <<< "$(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON")"
+
+          # Doing it this way to be very careful with space breaks
+          ANNOTATION_ARGS=()
+          while IFS= read -r annotation; do
+            [[ -n "$annotation" ]] && ANNOTATION_ARGS+=(--annotation "index:${annotation}")
+          done < <(jq -cr '.labels | to_entries | map(.key + "=" + .value)[]' <<< "$DOCKER_METADATA_OUTPUT_JSON")
+
+          DIGEST_TARGETS=()
+          for file in *; do
+            [[ -f "$file" ]] && DIGEST_TARGETS+=("${{ env.REGISTRY }}/${IMAGE_NAME_LOWER}@sha256:${file}")
+          done
+
+          docker buildx imagetools create \
+            "${TAG_ARGS[@]}" \
+            "${ANNOTATION_ARGS[@]}" \
+            "${DIGEST_TARGETS[@]}"
+          
+          digest=$(docker buildx imagetools inspect \
+            ${{ env.REGISTRY }}/${IMAGE_NAME_LOWER}:${{ steps.meta.outputs.version }} \
+            --format '{{json .Manifest.Digest}}' | sed 's/^"//;s/"$//' )
+          printf "digest=%s\n" "$digest" >> $GITHUB_OUTPUT
+          printf "Digest is: %s\n" "$digest"
+      # - name: Generate artifact attestation # Attestation does not work for private repos
+      #   uses: actions/attest-build-provenance@v4
+      #   with:
+      #     subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      #     subject-digest: ${{ steps.push.outputs.digest }}
