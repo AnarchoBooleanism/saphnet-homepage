@@ -3,16 +3,6 @@
 # https://gethomepage.dev/configs/services/
 
 - Services:
-    - Home Assistant:
-        icon: /icons/homeassistant.svg
-        href: https://ha.int.saphnet.xyz
-        description: Smart home manager
-        proxmoxNode: pve1
-        proxmoxVMID: 100
-        widget:
-            type: homeassistant
-            url: https://ha.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_HA_API_KEY}}
     - Immich:
         icon: immich.svg
         href: https://immich.int.saphnet.xyz
@@ -293,6 +283,14 @@
             showStats: true
 
 - Server:
+    - Home Assistant (haos):
+        icon: /icons/homeassistant.svg
+        href: https://ha.int.saphnet.xyz
+        description: Smart home manager, on laptop
+        widget:
+            type: homeassistant
+            url: https://ha.int.saphnet.xyz
+            key: {{HOMEPAGE_VAR_HA_API_KEY}}
     - Proxmox (pve1):
         icon: proxmox.svg
         href: https://pve1.int.saphnet.xyz
@@ -381,6 +379,42 @@
                 type: netdata
                 url: https://netdata-vps1.int.saphnet.xyz
 
+    - Glances - haos:
+        - Info:
+            href: https://glances.ha.int.saphnet.xyz
+            widget:
+                type: glances
+                url: https://glances.ha.int.saphnet.xyz
+                version: 4
+                metric: info
+        - CPU Usage:
+            href: https://glances.ha.int.saphnet.xyz
+            widget:
+                type: glances
+                url: https://glances.ha.int.saphnet.xyz
+                version: 4
+                metric: cpu
+        - Memory Usage:
+            href: https://glances.ha.int.saphnet.xyz
+            widget:
+                type: glances
+                url: https://glances.ha.int.saphnet.xyz
+                version: 4
+                metric: memory
+        - Network Usage:
+            href: https://glances.ha.int.saphnet.xyz
+            widget:
+                type: glances
+                url: https://glances.ha.int.saphnet.xyz
+                version: 4
+                metric: network:enp2s0
+        - CPU Temp:
+            href: https://glances.ha.int.saphnet.xyz
+            widget:
+                type: glances
+                url: https://glances.ha.int.saphnet.xyz
+                version: 4
+                metric: sensor:Package id 0
     - Glances - pve1:
         - Info:
             href: https://glances.int.saphnet.xyz
