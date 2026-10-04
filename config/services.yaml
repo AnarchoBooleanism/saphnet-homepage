@@ -3,617 +3,617 @@
 # https://gethomepage.dev/configs/services/
 
 - Services:
-    - Immich:
-        icon: immich.svg
-        href: https://immich.int.saphnet.xyz
-        description: Self-hosted photo and video management solution
-        server: docker-host-pve3
-        container: immich_server
-        widget:
-            type: immich
-            url: https://immich.int.saphnet.xyz
-            key: "{{HOMEPAGE_VAR_IMMICH_API_KEY}}"
-            version: 2
-    - Komodo:
-        icon: komodo.svg
-        href: https://komodo.int.saphnet.xyz
-        description: System for deploying Docker containers
-        server: control-server
-        container: komodo-core
-        widget: 
-            type: komodo
-            url: https://komodo.int.saphnet.xyz
-            key: "{{HOMEPAGE_VAR_KOMODO_API_KEY}}"
-            secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
-            showSummary: true # optional, default: false. Takes precedence over showStacks
-            showStacks: false # optional, default: false
-    - n8n:
-        icon: n8n.svg
-        href: https://n8n.int.saphnet.xyz
-        description: Workflow automation platform, with the flexibility of code and the speed of no-code
+  - Immich:
+      icon: immich.svg
+      href: https://immich.int.saphnet.xyz
+      description: Self-hosted photo and video management solution
+      server: docker-host-pve3
+      container: immich_server
+      widget:
+        type: immich
+        url: https://immich.int.saphnet.xyz
+        key: "{{HOMEPAGE_VAR_IMMICH_API_KEY}}"
+        version: 2
+  - Komodo:
+      icon: komodo.svg
+      href: https://komodo.int.saphnet.xyz
+      description: System for deploying Docker containers
+      server: control-server
+      container: komodo-core
+      widget: 
+        type: komodo
+        url: https://komodo.int.saphnet.xyz
+        key: "{{HOMEPAGE_VAR_KOMODO_API_KEY}}"
+        secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
+        showSummary: true # optional, default: false. Takes precedence over showStacks
+        showStacks: false # optional, default: false
+  - n8n:
+      icon: n8n.svg
+      href: https://n8n.int.saphnet.xyz
+      description: Workflow automation platform, with the flexibility of code and the speed of no-code
+      server: docker-host-core
+      container: n8n
+      widget:
+        type: customapi
+        url: https://n8n.int.saphnet.xyz/api/homepage-custom
+        mappings:
+          - field: workflows
+            label: Workflows
+            format: number
+          - field: executions
+            label: Executions
+            format: number
+  - Folding at Home:
+      icon: foldingathome.svg
+      href: https://fah.int.saphnet.xyz #add your address here
+      description: Fighting disease through computing
+      server: docker-host-pve3
+      container: foldingathome
+      showStats: true
+      widget:
+        type: customapi
+        url: https://api.foldingathome.org/user/{{HOMEPAGE_VAR_FAH_USERNAME}} #add your user name here
+        refreshInterval: 43200000 #set for every 12 hours, for daily scores to not overuse their api
+        method: GET
+        mappings:
+          - field: name
+            label: Name
+            format: text
+          - field: wus
+            label: work units
+            format: number
+          - field: rank
+            label: Rank
+            format: number
+          - field: score
+            label: score
+            format: number
+  - netboot.xyz:
+      icon: netboot.svg
+      href: https://netboot.int.saphnet.xyz
+      description: PXE server for loading OSes
+      server: docker-host-core
+      container: netbootxyz
+      showStats: true
+  - Deluge:
+      icon: deluge.svg
+      href: https://seedbox.int.saphnet.xyz
+      description: Torrent client
+      server: docker-host-pve3
+      container: deluge
+      showStats: true
+      widget: # No need for Docker stats here
+        type: deluge
+        url: https://seedbox.int.saphnet.xyz
+        password: "{{HOMEPAGE_VAR_DELUGE_PASSWORD}}"
+        enableLeechProgress: true
+  - Deluge SFTP:
+      icon: filezilla.svg
+      href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
+      description: Access downloaded seedbox files
+      server: docker-host-pve3
+      container: deluge-sftp
+      showStats: true
+  - BorgWarehouse:
+      icon: /icons/borgwarehouse.svg
+      href: https://borg.nas1.int.saphnet.xyz
+      description: Borg backup server, with a modern web UI
+      server: nas1
+      container: ix-borgwarehouse-borgwarehouse-1
+      showStats: true
+      widgets:
+        - type: customapi
+          url: https://borg.nas1.int.saphnet.xyz/api/v1/repositories
+          method: GET
+          headers:
+            Authorization: "Bearer {{HOMEPAGE_VAR_BORGWAREHOUSE_TOKEN}}"
+          display: dynamic-list
+          mappings:
+            items: repoList
+            name: alias
+            label: storageUsed
+            format: bytes
+
+  - Games:
+    - Pterodactyl:
+        icon: pterodactyl.svg
+        href: https://pterodactyl.int.saphnet.xyz
+        description: Panel for managing game servers
         server: docker-host-core
-        container: n8n
+        container: pterodactyl-panel
         widget:
-            type: customapi
-            url: https://n8n.int.saphnet.xyz/api/homepage-custom
-            mappings:
-                - field: workflows
-                  label: Workflows
-                  format: number
-                - field: executions
-                  label: Executions
-                  format: number
-    - Folding at Home:
-        icon: foldingathome.svg
-        href: https://fah.int.saphnet.xyz #add your address here
-        description: Fighting disease through computing
+          type: pterodactyl
+          url: https://pterodactyl.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}"
+    - The Void SMP:
+        icon: minecraft.svg
+        description: Minecraft SMP server (smp.thevoidpact.xyz / smp-int.thevoidpact.xyz)
+        widget:
+          type: minecraft
+          url: udp://pterodactyl-node-main.int-net.saphnet.xyz:25567
+  
+  - Media Server:
+    - Jellyfin:
+        icon: jellyfin.svg
+        href: https://jellyfin.media.int.saphnet.xyz
+        description: Server for managing and streaming media
         server: docker-host-pve3
-        container: foldingathome
+        container: jellyfin
         showStats: true
         widget:
-            type: customapi
-            url: https://api.foldingathome.org/user/{{HOMEPAGE_VAR_FAH_USERNAME}} #add your user name here
-            refreshInterval: 43200000 #set for every 12 hours, for daily scores to not overuse their api
-            method: GET
-            mappings:
-              - field: name
-                label: Name
-                format: text
-              - field: wus
-                label: work units
-                format: number
-              - field: rank
-                label: Rank
-                format: number
-              - field: score
-                label: score
-                format: number
-    - netboot.xyz:
-        icon: netboot.svg
-        href: https://netboot.int.saphnet.xyz
-        description: PXE server for loading OSes
+          type: jellyfin
+          url: https://jellyfin.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}"
+          enableBlocks: true # optional, defaults to false
+          enableNowPlaying: true # optional, defaults to true
+          enableUser: true # optional, defaults to false
+          showEpisodeNumber: true # optional, defaults to false
+          expandOneStreamToTwoRows: false # optional, defaults to true
+    - Seerr:
+        icon: seerr.svg
+        href: https://seerr.media.int.saphnet.xyz
+        description: Media request and discovery manager for Jellyfin
+        server: docker-host-pve3
+        container: seerr
+        widget:
+          type: seerr
+          url: https://seerr.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_SEERR_API_KEY}}"
+    - Prowlarr:
+        icon: prowlarr.svg
+        href: https://prowlarr.media.int.saphnet.xyz
+        description: Indexer manager & proxy for the *arr stack
+        server: docker-host-pve3
+        container: prowlarr
+        widget:
+          type: prowlarr
+          url: https://prowlarr.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}"
+    - Radarr:
+        icon: radarr.svg
+        href: https://radarr.media.int.saphnet.xyz
+        description: Movie collection manager through BitTorrent
+        server: docker-host-pve3
+        container: radarr
+        widget:
+          type: radarr
+          url: https://radarr.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
+          enableQueue: true # optional, defaults to false
+    - Radarr (anime):
+        icon: radarr.svg
+        href: https://radarr-anime.media.int.saphnet.xyz
+        description: Movie collection manager through BitTorrent (for anime)
+        server: docker-host-pve3
+        container: radarr-anime
+        widget:
+          type: radarr
+          url: https://radarr-anime.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_RADARR_ANIME_API_KEY}}"
+          enableQueue: true # optional, defaults to false
+    - Sonarr:
+        icon: sonarr.svg
+        href: https://sonarr.media.int.saphnet.xyz
+        description: TV show collection manager through BitTorrent
+        server: docker-host-pve3
+        container: sonarr
+        widget:
+          type: sonarr
+          url: https://sonarr.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
+          enableQueue: true # optional, defaults to false
+    - Sonarr (anime):
+        icon: sonarr.svg
+        href: https://sonarr-anime.media.int.saphnet.xyz
+        description: TV show collection manager through BitTorrent (for anime)
+        server: docker-host-pve3
+        container: sonarr-anime
+        widget:
+          type: sonarr
+          url: https://sonarr-anime.media.int.saphnet.xyz
+          key: "{{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}"
+          enableQueue: true # optional, defaults to false
+
+  - Traefik:
+    - Traefik (docker-host-core):
+        icon: traefik.svg
+        href: https://docker-host-core.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
         server: docker-host-core
-        container: netbootxyz
+        container: traefik
         showStats: true
-    - Deluge:
-        icon: deluge.svg
-        href: https://seedbox.int.saphnet.xyz
-        description: Torrent client
+        widget:
+          type: traefik
+          url: https://docker-host-core.int.saphnet.xyz
+          username: admin
+          password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
+    - Traefik (docker-host-pve3):
+        icon: traefik.svg
+        href: https://docker-host-pve3.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
         server: docker-host-pve3
-        container: deluge
+        container: traefik
         showStats: true
-        widget: # No need for Docker stats here
-            type: deluge
-            url: https://seedbox.int.saphnet.xyz
-            password: "{{HOMEPAGE_VAR_DELUGE_PASSWORD}}"
-            enableLeechProgress: true
-    - Deluge SFTP:
-        icon: filezilla.svg
-        href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
-        description: Access downloaded seedbox files
-        server: docker-host-pve3
-        container: deluge-sftp
+        widget:
+          type: traefik
+          url: https://docker-host-pve3.int.saphnet.xyz
+          username: admin
+          password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
+    - Traefik (docker-host-pve4):
+        icon: traefik.svg
+        href: https://docker-host-pve4.int.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: docker-host-pve4
+        container: traefik
         showStats: true
-    - BorgWarehouse:
-        icon: /icons/borgwarehouse.svg
-        href: https://borg.nas1.int.saphnet.xyz
-        description: Borg backup server, with a modern web UI
+        widget:
+          type: traefik
+          url: https://docker-host-pve4.int.saphnet.xyz
+          username: admin
+          password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
+    - Traefik (vps1):
+        icon: traefik.svg
+        href: https://traefik-vps1.saphnet.xyz
+        description: Cloud-native reverse proxy and load balancer
+        server: vps1
+        container: traefik
+        showStats: true
+        widget:
+          type: traefik
+          url: https://traefik-vps1.saphnet.xyz
+          username: admin
+          password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
+
+  - Utilities:
+    - Uptime Kuma:
+        icon: uptime-kuma.svg
+        href: https://uptimekuma.int.saphnet.xyz
+        description: Easy-to-use self-hosted monitoring tool
+        widget:
+          type: uptimekuma
+          url: https://uptimekuma.int.saphnet.xyz
+          slug: default
+          username: "{{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}"
+    - Nginx Proxy Manager (haos):
+        icon: nginx-proxy-manager.svg
+        href: https://nginx.ha.int.saphnet.xyz
+        description: Manage reverse proxies and more
+        widget:
+          type: npm
+          url: https://nginx.ha.int.saphnet.xyz
+          username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
+    - Nginx Proxy Manager (nas1):
+        icon: nginx-proxy-manager.svg
+        href: https://nginx.nas1.int.saphnet.xyz
+        description: Manage reverse proxies and more
         server: nas1
-        container: ix-borgwarehouse-borgwarehouse-1
+        container: ix-nginx-proxy-manager-npm-1
         showStats: true
-        widgets:
-            - type: customapi
-              url: https://borg.nas1.int.saphnet.xyz/api/v1/repositories
-              method: GET
-              headers:
-                  Authorization: "Bearer {{HOMEPAGE_VAR_BORGWAREHOUSE_TOKEN}}"
-              display: dynamic-list
-              mappings:
-                  items: repoList
-                  name: alias
-                  label: storageUsed
-                  format: bytes
-
-    - Games:
-        - Pterodactyl:
-            icon: pterodactyl.svg
-            href: https://pterodactyl.int.saphnet.xyz
-            description: Panel for managing game servers
-            server: docker-host-core
-            container: pterodactyl-panel
-            widget:
-                type: pterodactyl
-                url: https://pterodactyl.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}"
-        - The Void SMP:
-            icon: minecraft.svg
-            description: Minecraft SMP server (smp.thevoidpact.xyz / smp-int.thevoidpact.xyz)
-            widget:
-                type: minecraft
-                url: udp://pterodactyl-node-main.int-net.saphnet.xyz:25567
-    
-    - Media Server:
-        - Jellyfin:
-            icon: jellyfin.svg
-            href: https://jellyfin.media.int.saphnet.xyz
-            description: Server for managing and streaming media
-            server: docker-host-pve3
-            container: jellyfin
-            showStats: true
-            widget:
-                type: jellyfin
-                url: https://jellyfin.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}"
-                enableBlocks: true # optional, defaults to false
-                enableNowPlaying: true # optional, defaults to true
-                enableUser: true # optional, defaults to false
-                showEpisodeNumber: true # optional, defaults to false
-                expandOneStreamToTwoRows: false # optional, defaults to true
-        - Seerr:
-            icon: seerr.svg
-            href: https://seerr.media.int.saphnet.xyz
-            description: Media request and discovery manager for Jellyfin
-            server: docker-host-pve3
-            container: seerr
-            widget:
-                type: seerr
-                url: https://seerr.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_SEERR_API_KEY}}"
-        - Prowlarr:
-            icon: prowlarr.svg
-            href: https://prowlarr.media.int.saphnet.xyz
-            description: Indexer manager & proxy for the *arr stack
-            server: docker-host-pve3
-            container: prowlarr
-            widget:
-                type: prowlarr
-                url: https://prowlarr.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}"
-        - Radarr:
-            icon: radarr.svg
-            href: https://radarr.media.int.saphnet.xyz
-            description: Movie collection manager through BitTorrent
-            server: docker-host-pve3
-            container: radarr
-            widget:
-                type: radarr
-                url: https://radarr.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
-                enableQueue: true # optional, defaults to false
-        - Radarr (anime):
-            icon: radarr.svg
-            href: https://radarr-anime.media.int.saphnet.xyz
-            description: Movie collection manager through BitTorrent (for anime)
-            server: docker-host-pve3
-            container: radarr-anime
-            widget:
-                type: radarr
-                url: https://radarr-anime.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_RADARR_ANIME_API_KEY}}"
-                enableQueue: true # optional, defaults to false
-        - Sonarr:
-            icon: sonarr.svg
-            href: https://sonarr.media.int.saphnet.xyz
-            description: TV show collection manager through BitTorrent
-            server: docker-host-pve3
-            container: sonarr
-            widget:
-                type: sonarr
-                url: https://sonarr.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
-                enableQueue: true # optional, defaults to false
-        - Sonarr (anime):
-            icon: sonarr.svg
-            href: https://sonarr-anime.media.int.saphnet.xyz
-            description: TV show collection manager through BitTorrent (for anime)
-            server: docker-host-pve3
-            container: sonarr-anime
-            widget:
-                type: sonarr
-                url: https://sonarr-anime.media.int.saphnet.xyz
-                key: "{{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}"
-                enableQueue: true # optional, defaults to false
-
-    - Traefik:
-        - Traefik (docker-host-core):
-            icon: traefik.svg
-            href: https://docker-host-core.int.saphnet.xyz
-            description: Cloud-native reverse proxy and load balancer
-            server: docker-host-core
-            container: traefik
-            showStats: true
-            widget:
-                type: traefik
-                url: https://docker-host-core.int.saphnet.xyz
-                username: admin
-                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
-        - Traefik (docker-host-pve3):
-            icon: traefik.svg
-            href: https://docker-host-pve3.int.saphnet.xyz
-            description: Cloud-native reverse proxy and load balancer
-            server: docker-host-pve3
-            container: traefik
-            showStats: true
-            widget:
-                type: traefik
-                url: https://docker-host-pve3.int.saphnet.xyz
-                username: admin
-                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
-        - Traefik (docker-host-pve4):
-            icon: traefik.svg
-            href: https://docker-host-pve4.int.saphnet.xyz
-            description: Cloud-native reverse proxy and load balancer
-            server: docker-host-pve4
-            container: traefik
-            showStats: true
-            widget:
-                type: traefik
-                url: https://docker-host-pve4.int.saphnet.xyz
-                username: admin
-                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
-        - Traefik (vps1):
-            icon: traefik.svg
-            href: https://traefik-vps1.saphnet.xyz
-            description: Cloud-native reverse proxy and load balancer
-            server: vps1
-            container: traefik
-            showStats: true
-            widget:
-                type: traefik
-                url: https://traefik-vps1.saphnet.xyz
-                username: admin
-                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
-
-    - Utilities:
-        - Uptime Kuma:
-            icon: uptime-kuma.svg
-            href: https://uptimekuma.int.saphnet.xyz
-            description: Easy-to-use self-hosted monitoring tool
-            widget:
-                type: uptimekuma
-                url: https://uptimekuma.int.saphnet.xyz
-                slug: default
-                username: "{{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}"
-                password: "{{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}"
-        - Nginx Proxy Manager (haos):
-            icon: nginx-proxy-manager.svg
-            href: https://nginx.ha.int.saphnet.xyz
-            description: Manage reverse proxies and more
-            widget:
-                type: npm
-                url: https://nginx.ha.int.saphnet.xyz
-                username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
-                password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
-        - Nginx Proxy Manager (nas1):
-            icon: nginx-proxy-manager.svg
-            href: https://nginx.nas1.int.saphnet.xyz
-            description: Manage reverse proxies and more
-            server: nas1
-            container: ix-nginx-proxy-manager-npm-1
-            showStats: true
-            widget:
-                type: npm
-                url: https://nginx.nas1.int.saphnet.xyz
-                username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
-                password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
-        - Filestash:
-            icon: filestash.svg
-            href: https://filestash.int.saphnet.xyz
-            description: Access file servers via web UI
-            server: docker-host-core
-            container: filestash
-            showStats: true
-        - Guacamole:
-            icon: guacamole.svg
-            href: https://guacamole.int.saphnet.xyz
-            description: Remotely connect to systems via web UI
-            server: docker-host-core
-            container: guacamole
-            showStats: true
+        widget:
+          type: npm
+          url: https://nginx.nas1.int.saphnet.xyz
+          username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
+    - Filestash:
+        icon: filestash.svg
+        href: https://filestash.int.saphnet.xyz
+        description: Access file servers via web UI
+        server: docker-host-core
+        container: filestash
+        showStats: true
+    - Guacamole:
+        icon: guacamole.svg
+        href: https://guacamole.int.saphnet.xyz
+        description: Remotely connect to systems via web UI
+        server: docker-host-core
+        container: guacamole
+        showStats: true
 
 - Server:
-    - Home Assistant (haos):
-        icon: home-assistant.svg
-        href: https://ha.int.saphnet.xyz
-        description: Smart home manager, on laptop
-        widget:
-            type: homeassistant
-            url: https://ha.int.saphnet.xyz
-            key: "{{HOMEPAGE_VAR_HA_API_KEY}}"
-    - Proxmox (pve1):
-        icon: proxmox.svg
-        href: https://pve1.int.saphnet.xyz
-        description: Primary hypervisor, on laptop
-        widget:
-            type: proxmox
-            url: https://pve1.int.saphnet.xyz
-            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
-            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
-            node: pve1
-    - TrueNAS Scale (nas1):
-        icon: truenas.svg
-        href: https://nas1.int.saphnet.xyz
-        description: NAS host for bulk storage
-        widget:
-            type: truenas
-            url: https://nas1.int.saphnet.xyz
-            key: "{{HOMEPAGE_VAR_TRUENAS_API_KEY}}"
-            enablePools: true
-            nasType: scale
-    - Proxmox Backup Server (on nas1):
-        icon: proxmox.svg
-        href: https://pbs.nas1.int.saphnet.xyz
-        description: Backup manager for Proxmox
-        widget:
-            type: proxmoxbackupserver
-            url: https://pbs.nas1.int.saphnet.xyz
-            username: "{{HOMEPAGE_VAR_PBS_USERNAME}}"
-            password: "{{HOMEPAGE_VAR_PBS_PASSWORD}}"
-            datastore: TrueNAS
-    - Proxmox (pve3):
-        icon: proxmox.svg
-        href: https://pve3.int.saphnet.xyz
-        description: Hypervisor, on desktop
-        widget:
-            type: proxmox
-            url: https://pve3.int.saphnet.xyz
-            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
-            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
-            node: pve3
-    - Proxmox (pve4):
-        icon: proxmox.svg
-        href: https://pve4.int.saphnet.xyz
-        description: Hypervisor, on desktop
-        widget:
-            type: proxmox
-            url: https://pve4.int.saphnet.xyz
-            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
-            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
-            node: pve4
+  - Home Assistant (haos):
+      icon: home-assistant.svg
+      href: https://ha.int.saphnet.xyz
+      description: Smart home manager, on laptop
+      widget:
+        type: homeassistant
+        url: https://ha.int.saphnet.xyz
+        key: "{{HOMEPAGE_VAR_HA_API_KEY}}"
+  - Proxmox (pve1):
+      icon: proxmox.svg
+      href: https://pve1.int.saphnet.xyz
+      description: Primary hypervisor, on laptop
+      widget:
+        type: proxmox
+        url: https://pve1.int.saphnet.xyz
+        username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+        password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
+        node: pve1
+  - TrueNAS Scale (nas1):
+      icon: truenas.svg
+      href: https://nas1.int.saphnet.xyz
+      description: NAS host for bulk storage
+      widget:
+        type: truenas
+        url: https://nas1.int.saphnet.xyz
+        key: "{{HOMEPAGE_VAR_TRUENAS_API_KEY}}"
+        enablePools: true
+        nasType: scale
+  - Proxmox Backup Server (on nas1):
+      icon: proxmox.svg
+      href: https://pbs.nas1.int.saphnet.xyz
+      description: Backup manager for Proxmox
+      widget:
+        type: proxmoxbackupserver
+        url: https://pbs.nas1.int.saphnet.xyz
+        username: "{{HOMEPAGE_VAR_PBS_USERNAME}}"
+        password: "{{HOMEPAGE_VAR_PBS_PASSWORD}}"
+        datastore: TrueNAS
+  - Proxmox (pve3):
+      icon: proxmox.svg
+      href: https://pve3.int.saphnet.xyz
+      description: Hypervisor, on desktop
+      widget:
+        type: proxmox
+        url: https://pve3.int.saphnet.xyz
+        username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+        password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
+        node: pve3
+  - Proxmox (pve4):
+      icon: proxmox.svg
+      href: https://pve4.int.saphnet.xyz
+      description: Hypervisor, on desktop
+      widget:
+        type: proxmox
+        url: https://pve4.int.saphnet.xyz
+        username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+        password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
+        node: pve4
 
-    - Netdata:
-        - Netdata (pve1):
-            icon: netdata.svg
-            href: https://netdata.int.saphnet.xyz
-            description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
-            widget:
-                type: netdata
-                url: https://netdata.int.saphnet.xyz
-        - Netdata (nas1):
-            icon: netdata.svg
-            href: https://netdata.int.saphnet.xyz
-            description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
-            widget:
-                type: netdata
-                url: https://netdata.nas1.int.saphnet.xyz
-        - Netdata (pve3):
-            icon: netdata.svg
-            href: https://netdata.int.saphnet.xyz
-            description: Dell OptiPlex 9020 Intel Core i7-4770 @ 3.4 GHz
-            widget:
-                type: netdata
-                url: https://netdata3.int.saphnet.xyz
-        - Netdata (pve4):
-            icon: netdata.svg
-            href: https://netdata.int.saphnet.xyz
-            description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
-            widget:
-                type: netdata
-                url: https://netdata4.int.saphnet.xyz
-        - Netdata (vps1):
-            icon: netdata.svg
-            href: https://netdata.int.saphnet.xyz
-            description: RackNerd 2GB KVM VPS
-            widget:
-                type: netdata
-                url: https://netdata-vps1.int.saphnet.xyz
+  - Netdata:
+    - Netdata (pve1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
+        widget:
+          type: netdata
+          url: https://netdata.int.saphnet.xyz
+    - Netdata (nas1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
+        widget:
+          type: netdata
+          url: https://netdata.nas1.int.saphnet.xyz
+    - Netdata (pve3):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 9020 Intel Core i7-4770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata3.int.saphnet.xyz
+    - Netdata (pve4):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
+        widget:
+          type: netdata
+          url: https://netdata4.int.saphnet.xyz
+    - Netdata (vps1):
+        icon: netdata.svg
+        href: https://netdata.int.saphnet.xyz
+        description: RackNerd 2GB KVM VPS
+        widget:
+          type: netdata
+          url: https://netdata-vps1.int.saphnet.xyz
 
-    - Glances - haos:
-        - Info:
-            href: https://glances.ha.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.ha.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances.ha.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.ha.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances.ha.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.ha.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances.ha.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.ha.int.saphnet.xyz
-                version: 4
-                metric: network:enp2s0
-        - CPU Temp:
-            href: https://glances.ha.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.ha.int.saphnet.xyz
-                version: 4
-                metric: sensor:Package id 0
-    - Glances - pve1:
-        - Info:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.int.saphnet.xyz
-                version: 4
-                metric: sensor:Package id 0
-    - Glances - nas1:
-        - Info:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: network:bond0
-        - CPU Temp:
-            href: https://glances.nas1.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances.nas1.int.saphnet.xyz
-                version: 4
-                metric: sensor:Package id 0
-    - Glances - pve3:
-        - Info:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances3.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances3.int.saphnet.xyz
-                version: 4
-                metric: sensor:Package id 0
-    - Glances - pve4:
-        - Info:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances34.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: network:vmbr0
-        - CPU Temp:
-            href: https://glances4.int.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances4.int.saphnet.xyz
-                version: 4
-                metric: sensor:Package id 0
-    - Glances - vps1:
-        - Info:
-            href: https://glances-vps1.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.saphnet.xyz
-                version: 4
-                metric: info
-        - CPU Usage:
-            href: https://glances-vps1.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.saphnet.xyz
-                version: 4
-                metric: cpu
-        - Memory Usage:
-            href: https://glances-vps1.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.saphnet.xyz
-                version: 4
-                metric: memory
-        - Network Usage:
-            href: https://glances-vps1.saphnet.xyz
-            widget:
-                type: glances
-                url: https://glances-vps1.saphnet.xyz
-                version: 4
-                metric: network:eth0
+  - Glances - haos:
+    - Info:
+        href: https://glances.ha.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.ha.int.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances.ha.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.ha.int.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances.ha.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.ha.int.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances.ha.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.ha.int.saphnet.xyz
+          version: 4
+          metric: network:enp2s0
+    - CPU Temp:
+        href: https://glances.ha.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.ha.int.saphnet.xyz
+          version: 4
+          metric: sensor:Package id 0
+  - Glances - pve1:
+    - Info:
+        href: https://glances.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.int.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.int.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.int.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.int.saphnet.xyz
+          version: 4
+          metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.int.saphnet.xyz
+          version: 4
+          metric: sensor:Package id 0
+  - Glances - nas1:
+    - Info:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.nas1.int.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.nas1.int.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.nas1.int.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.nas1.int.saphnet.xyz
+          version: 4
+          metric: network:bond0
+    - CPU Temp:
+        href: https://glances.nas1.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances.nas1.int.saphnet.xyz
+          version: 4
+          metric: sensor:Package id 0
+  - Glances - pve3:
+    - Info:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances3.int.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances3.int.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances3.int.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances3.int.saphnet.xyz
+          version: 4
+          metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances3.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances3.int.saphnet.xyz
+          version: 4
+          metric: sensor:Package id 0
+  - Glances - pve4:
+    - Info:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances4.int.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances4.int.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances34.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances4.int.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances4.int.saphnet.xyz
+          version: 4
+          metric: network:vmbr0
+    - CPU Temp:
+        href: https://glances4.int.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances4.int.saphnet.xyz
+          version: 4
+          metric: sensor:Package id 0
+  - Glances - vps1:
+    - Info:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances-vps1.saphnet.xyz
+          version: 4
+          metric: info
+    - CPU Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances-vps1.saphnet.xyz
+          version: 4
+          metric: cpu
+    - Memory Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances-vps1.saphnet.xyz
+          version: 4
+          metric: memory
+    - Network Usage:
+        href: https://glances-vps1.saphnet.xyz
+        widget:
+          type: glances
+          url: https://glances-vps1.saphnet.xyz
+          version: 4
+          metric: network:eth0

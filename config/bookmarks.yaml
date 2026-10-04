@@ -3,36 +3,36 @@
 # https://gethomepage.dev/configs/bookmarks
 
 - Internal:
-    - Router:
-        - abbr: RT
-          href: https://router.int.saphnet.xyz
-    - Switch (switch1):
-        - abbr: SW
-          href: https://switch1.int.saphnet.xyz
-    - OpenSpeedTest:
-        - abbr: OST
-          href: https://speedtest.int.saphnet.xyz
-    - OpenSpeedTest (http):
-        - abbr: OST
-          href: http://docker-host-core.int-net.saphnet.xyz:3000
-    - VERT:
-        - abbr: VT
-          href: https://vert.int.saphnet.xyz
-    - Garage (S3):
-        - abbr: GR
-          href: https://garage.nas1.int.saphnet.xyz
-    - Home Assistant Observer:
-        - abbr: HAO
-          href: https://observer.ha.int.saphnet.xyz
-    - Glances - docker-host-core:
-        - abbr: GC
-          href: https://glances.docker-host-core.int.saphnet.xyz
-    - Glances - docker-host-pve3:
-        - abbr: G3
-          href: https://glances.docker-host-pve3.int.saphnet.xyz
-    - Glances - docker-host-pve4:
-        - abbr: G4
-          href: https://glances.docker-host-pve4.int.saphnet.xyz
+  - Router:
+    - abbr: RT
+      href: https://router.int.saphnet.xyz
+  - Switch (switch1):
+    - abbr: SW
+      href: https://switch1.int.saphnet.xyz
+  - OpenSpeedTest:
+    - abbr: OST
+      href: https://speedtest.int.saphnet.xyz
+  - OpenSpeedTest (http):
+    - abbr: OST
+      href: http://docker-host-core.int-net.saphnet.xyz:3000
+  - VERT:
+    - abbr: VT
+      href: https://vert.int.saphnet.xyz
+  - Garage (S3):
+    - abbr: GR
+      href: https://garage.nas1.int.saphnet.xyz
+  - Home Assistant Observer:
+    - abbr: HAO
+      href: https://observer.ha.int.saphnet.xyz
+  - Glances - docker-host-core:
+    - abbr: GC
+      href: https://glances.docker-host-core.int.saphnet.xyz
+  - Glances - docker-host-pve3:
+    - abbr: G3
+      href: https://glances.docker-host-pve3.int.saphnet.xyz
+  - Glances - docker-host-pve4:
+    - abbr: G4
+      href: https://glances.docker-host-pve4.int.saphnet.xyz
 
 - External:
   - saphnet.xyz:
@@ -49,12 +49,12 @@
       href: https://immich.saphnet.xyz
 
 - The Void SMP:
-    - Bluemap:
-        - abbr: DY
-          href: https://map.thevoidpact.xyz
-    - Bluemap (internal):
-        - abbr: DY
-          href: https://map-int.thevoidpact.xyz
-    - Blog:
-        - abbr: BL
-          href: https://builds.thevoidpact.xyz
+  - Bluemap:
+    - abbr: DY
+      href: https://map.thevoidpact.xyz
+  - Bluemap (internal):
+    - abbr: DY
+      href: https://map-int.thevoidpact.xyz
+  - Blog:
+    - abbr: BL
+      href: https://builds.thevoidpact.xyz
