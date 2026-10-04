@@ -94,6 +94,26 @@
         server: docker-host-pve3
         container: deluge-sftp
         showStats: true
+    - BorgWarehouse:
+        icon: /icons/borgwarehouse.svg
+        href: https://borg.nas1.int.saphnet.xyz
+        description: Borg backup server, with a modern web UI
+        server: nas1
+        container: ix-borgwarehouse-borgwarehouse-1
+        showStats: true
+        widgets:
+            - type: customapi
+              url: https://borg.nas1.int.saphnet.xyz/api/v1/repositories
+              method: GET
+              headers:
+                  Authorization: "Bearer {{HOMEPAGE_VAR_BORGWAREHOUSE_TOKEN}}"
+              display: dynamic-list
+              mappings:
+                  items: repoList
+                  name: alias
+                  label: storageUsed
+                  format: bytes
+
     - Games:
         - Pterodactyl:
             icon: pterodactyl.svg
