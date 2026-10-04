@@ -374,7 +374,7 @@
         - Netdata (vps1):
             icon: netdata.svg
             href: https://netdata.int.saphnet.xyz
-            description: Rarecloud Starter KVM
+            description: RackNerd 2GB KVM VPS
             widget:
                 type: netdata
                 url: https://netdata-vps1.int.saphnet.xyz
