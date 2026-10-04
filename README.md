@@ -3,6 +3,8 @@ The config files for Homepage for the Sapphic Homelab/Home Server
 
 To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 
+For debugging and development, be sure to run the command: `docker run -p 3000:3000 --env-file homepage.env -v ./config:/app/config -v ./icons:/app/public/icons -v ./images:/app/public/images ghcr.io/gethomepage/homepage`
+
 Environment variables to pass secrets to in `homepage.env`:
 - `HOMEPAGE_VAR_PROXMOX_USERNAME`
 - `HOMEPAGE_VAR_PROXMOX_PASSWORD`
