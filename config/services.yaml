@@ -12,7 +12,7 @@
         widget:
             type: immich
             url: https://immich.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_IMMICH_API_KEY}}
+            key: "{{HOMEPAGE_VAR_IMMICH_API_KEY}}"
             version: 2
     - Komodo:
         icon: komodo.svg
@@ -23,8 +23,8 @@
         widget: 
             type: komodo
             url: https://komodo.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_KOMODO_API_KEY}}
-            secret: {{HOMEPAGE_VAR_KOMODO_SECRET}}
+            key: "{{HOMEPAGE_VAR_KOMODO_API_KEY}}"
+            secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
             showSummary: true # optional, default: false. Takes precedence over showStacks
             showStacks: false # optional, default: false
     - n8n:
@@ -85,7 +85,7 @@
         widget: # No need for Docker stats here
             type: deluge
             url: https://seedbox.int.saphnet.xyz
-            password: {{HOMEPAGE_VAR_DELUGE_PASSWORD}}
+            password: "{{HOMEPAGE_VAR_DELUGE_PASSWORD}}"
             enableLeechProgress: true
     - Deluge SFTP:
         icon: filezilla.svg
@@ -94,7 +94,6 @@
         server: docker-host-pve3
         container: deluge-sftp
         showStats: true
-    
     - Games:
         - Pterodactyl:
             icon: pterodactyl.svg
@@ -105,7 +104,7 @@
             widget:
                 type: pterodactyl
                 url: https://pterodactyl.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
+                key: "{{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}"
         - The Void SMP:
             icon: minecraft.svg
             description: Minecraft SMP server (smp.thevoidpact.xyz / smp-int.thevoidpact.xyz)
@@ -124,7 +123,7 @@
             widget:
                 type: jellyfin
                 url: https://jellyfin.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_JELLYFIN_API_KEY}}
+                key: "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}"
                 enableBlocks: true # optional, defaults to false
                 enableNowPlaying: true # optional, defaults to true
                 enableUser: true # optional, defaults to false
@@ -139,7 +138,7 @@
             widget:
                 type: seerr
                 url: https://seerr.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_SEERR_API_KEY}}
+                key: "{{HOMEPAGE_VAR_SEERR_API_KEY}}"
         - Prowlarr:
             icon: prowlarr.svg
             href: https://prowlarr.media.int.saphnet.xyz
@@ -149,7 +148,7 @@
             widget:
                 type: prowlarr
                 url: https://prowlarr.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
+                key: "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}"
         - Radarr:
             icon: radarr.svg
             href: https://radarr.media.int.saphnet.xyz
@@ -159,7 +158,7 @@
             widget:
                 type: radarr
                 url: https://radarr.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+                key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
                 enableQueue: true # optional, defaults to false
         - Radarr (anime):
             icon: radarr.svg
@@ -170,7 +169,7 @@
             widget:
                 type: radarr
                 url: https://radarr-anime.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_RADARR_ANIME_API_KEY}}
+                key: "{{HOMEPAGE_VAR_RADARR_ANIME_API_KEY}}"
                 enableQueue: true # optional, defaults to false
         - Sonarr:
             icon: sonarr.svg
@@ -181,7 +180,7 @@
             widget:
                 type: sonarr
                 url: https://sonarr.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+                key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
                 enableQueue: true # optional, defaults to false
         - Sonarr (anime):
             icon: sonarr.svg
@@ -192,7 +191,7 @@
             widget:
                 type: sonarr
                 url: https://sonarr-anime.media.int.saphnet.xyz
-                key: {{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}
+                key: "{{HOMEPAGE_VAR_SONARR_ANIME_API_KEY}}"
                 enableQueue: true # optional, defaults to false
 
     - Traefik:
@@ -207,7 +206,7 @@
                 type: traefik
                 url: https://docker-host-core.int.saphnet.xyz
                 username: admin
-                password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
         - Traefik (docker-host-pve3):
             icon: traefik.svg
             href: https://docker-host-pve3.int.saphnet.xyz
@@ -219,7 +218,7 @@
                 type: traefik
                 url: https://docker-host-pve3.int.saphnet.xyz
                 username: admin
-                password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
         - Traefik (docker-host-pve4):
             icon: traefik.svg
             href: https://docker-host-pve4.int.saphnet.xyz
@@ -231,7 +230,7 @@
                 type: traefik
                 url: https://docker-host-pve4.int.saphnet.xyz
                 username: admin
-                password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
         - Traefik (vps1):
             icon: traefik.svg
             href: https://traefik-vps1.saphnet.xyz
@@ -243,7 +242,7 @@
                 type: traefik
                 url: https://traefik-vps1.saphnet.xyz
                 username: admin
-                password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
+                password: "{{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}"
 
     - Utilities:
         - Uptime Kuma:
@@ -254,8 +253,8 @@
                 type: uptimekuma
                 url: https://uptimekuma.int.saphnet.xyz
                 slug: default
-                username: {{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}
-                password: {{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}
+                username: "{{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}"
+                password: "{{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}"
         - Nginx Proxy Manager (haos):
             icon: nginx-proxy-manager.svg
             href: https://nginx.ha.int.saphnet.xyz
@@ -263,8 +262,8 @@
             widget:
                 type: npm
                 url: https://nginx.ha.int.saphnet.xyz
-                username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
-                password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+                username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
+                password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
         - Nginx Proxy Manager (nas1):
             icon: nginx-proxy-manager.svg
             href: https://nginx.nas1.int.saphnet.xyz
@@ -275,8 +274,8 @@
             widget:
                 type: npm
                 url: https://nginx.nas1.int.saphnet.xyz
-                username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
-                password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
+                username: "{{HOMEPAGE_VAR_NPM_INT_USERNAME}}"
+                password: "{{HOMEPAGE_VAR_NPM_INT_PASSWORD}}"
         - Filestash:
             icon: filestash.svg
             href: https://filestash.int.saphnet.xyz
@@ -300,7 +299,7 @@
         widget:
             type: homeassistant
             url: https://ha.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_HA_API_KEY}}
+            key: "{{HOMEPAGE_VAR_HA_API_KEY}}"
     - Proxmox (pve1):
         icon: proxmox.svg
         href: https://pve1.int.saphnet.xyz
@@ -308,8 +307,8 @@
         widget:
             type: proxmox
             url: https://pve1.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
             node: pve1
     - TrueNAS Scale (nas1):
         icon: truenas.svg
@@ -318,7 +317,7 @@
         widget:
             type: truenas
             url: https://nas1.int.saphnet.xyz
-            key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
+            key: "{{HOMEPAGE_VAR_TRUENAS_API_KEY}}"
             enablePools: true
             nasType: scale
     - Proxmox Backup Server (on nas1):
@@ -328,8 +327,8 @@
         widget:
             type: proxmoxbackupserver
             url: https://pbs.nas1.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PBS_USERNAME}}
-            password: {{HOMEPAGE_VAR_PBS_PASSWORD}}
+            username: "{{HOMEPAGE_VAR_PBS_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_PBS_PASSWORD}}"
             datastore: TrueNAS
     - Proxmox (pve3):
         icon: proxmox.svg
@@ -338,8 +337,8 @@
         widget:
             type: proxmox
             url: https://pve3.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
             node: pve3
     - Proxmox (pve4):
         icon: proxmox.svg
@@ -348,8 +347,8 @@
         widget:
             type: proxmox
             url: https://pve4.int.saphnet.xyz
-            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
             node: pve4
 
     - Netdata:
