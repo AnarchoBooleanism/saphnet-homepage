@@ -15,7 +15,7 @@
             key: {{HOMEPAGE_VAR_IMMICH_API_KEY}}
             version: 2
     - Komodo:
-        icon: /icons/komodo-512x512.png
+        icon: komodo.svg
         href: https://komodo.int.saphnet.xyz
         description: System for deploying Docker containers
         server: control-server
@@ -69,7 +69,7 @@
                 label: score
                 format: number
     - netboot.xyz:
-        icon: /icons/netbootxyz.svg
+        icon: netboot.svg
         href: https://netboot.int.saphnet.xyz
         description: PXE server for loading OSes
         server: docker-host-core
@@ -88,7 +88,7 @@
             password: {{HOMEPAGE_VAR_DELUGE_PASSWORD}}
             enableLeechProgress: true
     - Deluge SFTP:
-        icon: /icons/filezilla.svg
+        icon: filezilla.svg
         href: sftp://seedbox@seedbox.int-net.saphnet.xyz:2222
         description: Access downloaded seedbox files
         server: docker-host-pve3
@@ -257,7 +257,7 @@
                 username: {{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}
                 password: {{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}
         - Nginx Proxy Manager (haos):
-            icon: /icons/nginxproxymanager.svg
+            icon: nginx-proxy-manager.svg
             href: https://nginx.ha.int.saphnet.xyz
             description: Manage reverse proxies and more
             widget:
@@ -266,7 +266,7 @@
                 username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
                 password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
         - Nginx Proxy Manager (nas1):
-            icon: /icons/nginxproxymanager.svg
+            icon: nginx-proxy-manager.svg
             href: https://nginx.nas1.int.saphnet.xyz
             description: Manage reverse proxies and more
             server: nas1
@@ -278,7 +278,7 @@
                 username: {{HOMEPAGE_VAR_NPM_INT_USERNAME}}
                 password: {{HOMEPAGE_VAR_NPM_INT_PASSWORD}}
         - Filestash:
-            icon: /icons/filestash.svg
+            icon: filestash.svg
             href: https://filestash.int.saphnet.xyz
             description: Access file servers via web UI
             server: docker-host-core
@@ -294,7 +294,7 @@
 
 - Server:
     - Home Assistant (haos):
-        icon: /icons/homeassistant.svg
+        icon: home-assistant.svg
         href: https://ha.int.saphnet.xyz
         description: Smart home manager, on laptop
         widget:
