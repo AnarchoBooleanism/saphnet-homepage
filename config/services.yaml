@@ -246,6 +246,16 @@
                 password: {{HOMEPAGE_VAR_TRAEFIK_PASSWORD}}
 
     - Utilities:
+        - Uptime Kuma:
+            icon: uptime-kuma.svg
+            href: https://uptimekuma.int.saphnet.xyz
+            description: Easy-to-use self-hosted monitoring tool
+            widget:
+                type: uptimekuma
+                url: https://uptimekuma.int.saphnet.xyz
+                slug: default
+                username: {{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}
+                password: {{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}
         - Nginx Proxy Manager (haos):
             icon: /icons/nginxproxymanager.svg
             href: https://nginx.ha.int.saphnet.xyz
