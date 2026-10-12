@@ -1,4 +1,4 @@
-FROM ghcr.io/gethomepage/homepage:v2.4.0@sha256:643bd0be730d40f69d58028a55d1a896739333e8815786df42bc97f109ecbe61
+FROM ghcr.io/gethomepage/homepage:v2.5.0@sha256:57c4a0531937889c0b968b120fe9c2560bbe036b5c9e18c49a9e2479de9975d1
 COPY config /app/config
 COPY icons /app/public/icons
 COPY images /app/public/images
