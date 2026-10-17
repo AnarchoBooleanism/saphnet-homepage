@@ -371,42 +371,42 @@
         password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
         node: pve4
 
-  - Netdata:
-    - Netdata (pve1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
-        widget:
-          type: netdata
-          url: https://netdata.int.saphnet.xyz
-    - Netdata (nas1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
-        widget:
-          type: netdata
-          url: https://netdata.nas1.int.saphnet.xyz
-    - Netdata (pve3):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: Dell OptiPlex 9020 Intel Core i7-4770 @ 3.4 GHz
-        widget:
-          type: netdata
-          url: https://netdata3.int.saphnet.xyz
-    - Netdata (pve4):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
-        widget:
-          type: netdata
-          url: https://netdata4.int.saphnet.xyz
-    - Netdata (vps1):
-        icon: netdata.svg
-        href: https://netdata.int.saphnet.xyz
-        description: RackNerd 2GB KVM VPS
-        widget:
-          type: netdata
-          url: https://netdata-vps1.int.saphnet.xyz
+  # - Netdata:
+  #   - Netdata (pve1):
+  #       icon: netdata.svg
+  #       href: https://netdata.int.saphnet.xyz
+  #       description: HP ENVY 17-j013cl Intel Core i5-3230M @ 2.6 GHz
+  #       widget:
+  #         type: netdata
+  #         url: https://netdata.int.saphnet.xyz
+  #   - Netdata (nas1):
+  #       icon: netdata.svg
+  #       href: https://netdata.int.saphnet.xyz
+  #       description: MSI Z87-GD65 GAMING Intel Core i7-4770S @ 3.1 GHz
+  #       widget:
+  #         type: netdata
+  #         url: https://netdata.nas1.int.saphnet.xyz
+  #   - Netdata (pve3):
+  #       icon: netdata.svg
+  #       href: https://netdata.int.saphnet.xyz
+  #       description: Dell OptiPlex 9020 Intel Core i7-4770 @ 3.4 GHz
+  #       widget:
+  #         type: netdata
+  #         url: https://netdata3.int.saphnet.xyz
+  #   - Netdata (pve4):
+  #       icon: netdata.svg
+  #       href: https://netdata.int.saphnet.xyz
+  #       description: Dell OptiPlex 9010 Intel Core i7-3770 @ 3.4 GHz
+  #       widget:
+  #         type: netdata
+  #         url: https://netdata4.int.saphnet.xyz
+  #   - Netdata (vps1):
+  #       icon: netdata.svg
+  #       href: https://netdata.int.saphnet.xyz
+  #       description: RackNerd 2GB KVM VPS
+  #       widget:
+  #         type: netdata
+  #         url: https://netdata-vps1.int.saphnet.xyz
 
   - Glances - haos:
     - Info:
