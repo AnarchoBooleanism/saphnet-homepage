@@ -1,4 +1,4 @@
 #!/bin/sh
-echo "test1"
-sleep infinity
-exit 1
+
+cd /opt/api-server
+fastapi run app/main.py --port 3001
