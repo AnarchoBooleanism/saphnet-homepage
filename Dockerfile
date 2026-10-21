@@ -45,7 +45,6 @@ RUN case "${TARGETARCH}" in \
 # TODO:
 # - Try to get renovate manager for Dockerfiles
 # - Put in API servers
-# - Create services, maybe dependency graph for services
 ## Main build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
 ARG NODE_VERSION=22
@@ -74,12 +73,14 @@ COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046
 ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
 ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
-# Finally, copy local files for Homepage
+# Finally, copy project files
 COPY homepage /app
-# And this
 COPY api-server /var/lib/api-server
+COPY s6-overlay /etc/s6-overlay
 
 USER root
+ENV PUID=1000
+ENV PGID=1000
 
 ENV NODE_ENV=production
 ENV HOSTNAME=::
@@ -98,4 +99,3 @@ HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
 # Or just break up the entrypoint into different parts
 # Consider the PUID thing too
 ENTRYPOINT ["/init"]
-CMD ["node", "server.js"]
