@@ -1,58 +1,6 @@
-## Homepage build stage
-FROM node:26.12.0-slim@sha256:0d1e33586362bb9e608c4e751e7a9e7edb55c9ac11461ed5666af696cc461dd4 AS homepage-builder
-ARG HOMEPAGE_VERSION=v2.6.0
-
-ARG BUILDTIME
-ARG VERSION
-ARG REVISION
-
-WORKDIR /setup
-COPY pnpm-lock .
-
-RUN npm ci --no-audit --no-fund && \
-    ln -s /setup/node_modules/.bin/pnpm /usr/local/bin/pnpm
-
-WORKDIR /app
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates wget && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN mkdir config
-
-RUN wget -P /tmp https://github.com/gethomepage/homepage/archive/refs/tags/${HOMEPAGE_VERSION}.tar.gz && \
-    tar -C /app --strip-components=1 -xf /tmp/${HOMEPAGE_VERSION}.tar.gz && \
-    rm -rf /tmp/${HOMEPAGE_VERSION}.tar.gz
-
-RUN pnpm install --frozen-lockfile --prefer-offline && \
-    NEXT_TELEMETRY_DISABLED=1 \
-    NEXT_PUBLIC_BUILDTIME=$BUILDTIME \
-    NEXT_PUBLIC_VERSION=$VERSION \
-    NEXT_PUBLIC_REVISION=$REVISION \
-    pnpm run build;
-
 ## Python venv build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f AS venv-builder
 ARG PYTHON_VERSION=3.14.8
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    ca-certificates build-essential zlib1g-dev libncurses-dev libgdbm-dev \
-    libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev \
-    wget llvm libbz2-dev xz-utils tk-dev liblzma-dev libncursesw6 && \
-    rm -rf /var/lib/apt/lists/*
-
-# We want a newer version of Python
-RUN cd /usr/src && \
-    wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
-    tar -xzf Python-${PYTHON_VERSION}.tgz && \
-    rm -rf Python-${PYTHON_VERSION}.tgz && \
-    cd Python-${PYTHON_VERSION} && \
-    ./configure --enable-optimizations --prefix=/opt/python && \
-    make -j$(nproc) && \
-    make altinstall
 
 COPY --from=ghcr.io/astral-sh/uv:0.13.3@sha256:bee0a2a458fd956c5df7b8b4c5fed2257b0af34866e3da7b51db0be3acb375d1 /uv /uvx /bin/
 
@@ -62,8 +10,8 @@ ENV UV_LINK_MODE=copy
 ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
 ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
-COPY api-server/pyproject.toml api-server/uv.lock ./
-RUN mkdir -p /opt/venv && \
+COPY api-server/pyproject.toml api-server/uv.lock api-server/.python-version ./
+RUN mkdir -p /opt/venv /opt/python && \
     uv sync --frozen --no-install-project
 
 ## s6-overlay build stage
@@ -94,21 +42,14 @@ RUN case "${TARGETARCH}" in \
 # - Try to get renovate manager for Dockerfiles
 # - Put in API servers
 # - Create services, maybe dependency graph for services
-# - Use LINK for COPY?
+# - Add checksum stages
 ## Main build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
-
-ARG NODE_VERSION=26
+ARG NODE_VERSION=22
 
 WORKDIR /app
 
 # Set up base environment
-# COPY --from=homepage-builder /app
-COPY --from=venv-builder /opt/python /opt/python
-COPY --from=venv-builder /bin/uv /bin/uvx /bin/
-COPY --from=venv-builder /opt/venv /opt/venv
-COPY --from=s6-builder /tmp/s6-root /
-
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates wget gnupg \
@@ -119,30 +60,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+COPY --from=venv-builder /opt/python /opt/python
+COPY --from=venv-builder /bin/uv /bin/uvx /bin/
+COPY --from=venv-builder /opt/venv /opt/venv
+COPY --from=s6-builder /tmp/s6-root /
+
+# Use the build from the official image, since all the NEXT_PUBLIC_ variables are handled there
+COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8 --chown=1000:1000 /app /app
+
 ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
 ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
-# # Copy some files from context
-# # TODO: Figure out what docker-entrypoint.sh does, make it work for your context
-# COPY --link --chmod=755 docker-entrypoint.sh /usr/local/bin/
-
-# # Copy only necessary files from Homepage build stage
-COPY --link --from=homepage-builder --chown=1000:1000 /app/public ./public/
-COPY --link --from=homepage-builder --chown=1000:1000 /app/.next/standalone/ ./
-COPY --link --from=homepage-builder --chown=1000:1000 /app/.next/static/ ./.next/static
-
 # Finally, copy local files for Homepage
 COPY homepage /app
-
 # And this
 COPY api-server /var/lib/api-server
+
+USER root
 
 ENV NODE_ENV=production
 ENV HOSTNAME=::
 ENV PORT=3000
 EXPOSE $PORT
 
-# TODO: Figure out clean way to pass environment variables
+# We want the services to be able to access any environment variables, since they are
+# similarly trusted, and the list of environment variables can change often
 ENV S6_KEEP_ENV=1
 
 HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
@@ -153,4 +95,4 @@ HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
 # Or just break up the entrypoint into different parts
 # Consider the PUID thing too
 ENTRYPOINT ["/init"]
-# CMD ["node", "server.js"]
+CMD ["node", "server.js"]
