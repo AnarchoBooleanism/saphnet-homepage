@@ -8,6 +8,7 @@ WORKDIR /setup
 ENV UV_COMPILE_BYTECODE=1
 ENV UV_LINK_MODE=copy
 ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
+ENV UV_PYTHON_INSTALL_DIR="/opt/python"
 ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
 COPY api-server/pyproject.toml api-server/uv.lock api-server/.python-version ./
@@ -66,12 +67,11 @@ COPY --from=venv-builder /opt/python /opt/python
 COPY --from=venv-builder /bin/uv /bin/uvx /bin/
 COPY --from=venv-builder /opt/venv /opt/venv
 COPY --from=s6-builder /tmp/s6-root /
+ENV PATH="/opt/venv/bin:/opt/python/bin:$PATH"
 
 # Use the build from the official image, since all the NEXT_PUBLIC_ variables are handled there
 COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8 --chown=1000:1000 /app /app
 
-ENV UV_PROJECT_ENVIRONMENT="/opt/venv"
-ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
 # Finally, copy project files
 COPY homepage /app
@@ -102,8 +102,4 @@ ENV S6_KEEP_ENV=1
 HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
     CMD wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$PORT/api/healthcheck || exit 1
 
-# Define s6-overlay as the entrypoint
-# TODO: Figure out how to get init to run the homepage entrypoint, and then have that run CMD
-# Or just break up the entrypoint into different parts
-# Consider the PUID thing too
 ENTRYPOINT ["/init"]
