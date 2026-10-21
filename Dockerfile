@@ -31,18 +31,21 @@ RUN case "${TARGETARCH}" in \
         *) printf '"%s" is not a valid architecture!\n' "${TARGETARCH}" >&2 && exit 1;; \
     esac \
     && echo "Downloading s6-overlay for ${S6_ARCH}..." \
-    && wget -O /tmp/s6-overlay-noarch.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz" \
-    && wget -O /tmp/s6-overlay-bin.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz" \
-    && mkdir -p /tmp/s6-root \
-    && tar -C /tmp/s6-root -Jxpf /tmp/s6-overlay-noarch.tar.xz \
-    && tar -C /tmp/s6-root -Jxpf /tmp/s6-overlay-bin.tar.xz \
-    && rm -rf /tmp/s6-overlay-*.tar.xz
+    && cd /tmp \
+    && wget -O s6-overlay-noarch.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz" \
+    && wget -O s6-overlay-noarch.tar.xz.sha256 "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256" \
+    && wget -O s6-overlay-${S6_ARCH}.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz" \
+    && wget -O s6-overlay-${S6_ARCH}.tar.xz.sha256 "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz.sha256" \
+    && sha256sum -c *.sha256 \
+    && mkdir -p s6-root \
+    && tar -C s6-root -Jxpf s6-overlay-noarch.tar.xz \
+    && tar -C s6-root -Jxpf s6-overlay-${S6_ARCH}.tar.xz \
+    && rm -rf s6-overlay-*.tar.xz s6-overlay-*.tar.xz.sha256
 
 # TODO:
 # - Try to get renovate manager for Dockerfiles
 # - Put in API servers
 # - Create services, maybe dependency graph for services
-# - Add checksum stages
 ## Main build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
 ARG NODE_VERSION=22
