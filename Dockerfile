@@ -75,12 +75,20 @@ ENV PATH="$UV_PROJECT_ENVIRONMENT/bin:/opt/python/bin:$PATH"
 
 # Finally, copy project files
 COPY homepage /app
-COPY api-server /var/lib/api-server
+COPY api-server /opt/api-server
 COPY s6-overlay /etc/s6-overlay
+RUN chmod +x /etc/s6-overlay/scripts/*
+
+# The init-user service assumes this exists
+RUN mkdir -p /app/config
 
 USER root
 ENV PUID=1000
 ENV PGID=1000
+
+# Create appuser
+RUN groupadd -g 1000 appuser
+RUN useradd -u 1000 -g appuser -M -s /bin/false appuser
 
 ENV NODE_ENV=production
 ENV HOSTNAME=::

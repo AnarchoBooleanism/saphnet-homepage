@@ -1,3 +1,25 @@
 #!/bin/sh
+# See: https://github.com/gethomepage/homepage/blob/dev/docker-entrypoint.sh
+# Note that this script expects PUID and PGID to already be set, which should already be done in the Dockerfile
+
+set -e
+
 cd /app
-node server.js
+
+export HOMEPAGE_BUILDTIME=$(date +%s)
+
+# Try IPv6 first (dual stack when available), but fall back to IPv4 if the bind fails
+export HOSTNAME=${HOSTNAME:-::}
+if [ "$HOSTNAME" = "::" ]; then
+  if ! node -e "const server = require('http').createServer(() => {}); const host = '::'; const port = process.env.PORT || 3000; server.once('error', (err) => { console.error('IPv6 bind failed:', err.message); process.exit(1); }); server.listen(port, host, () => server.close(() => process.exit(0)));"; then
+    echo "Falling back to IPv4 bind at 0.0.0.0"
+    export HOSTNAME=0.0.0.0
+  fi
+fi
+
+# Drop privileges (when asked to) if root, otherwise run as current user
+if [ "$(id -u)" = "0" ] && [ "${PUID}" != "0" ]; then
+  exec s6-setuidgid appuser node server.js
+else
+  exec node server.js
+fi
