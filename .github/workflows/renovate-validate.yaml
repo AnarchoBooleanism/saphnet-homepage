@@ -1,0 +1,29 @@
+name: Validate Renovate config files
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - main
+    paths:
+      - ".github/renovate.jsonc"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/renovate.jsonc"
+
+jobs:
+  validate-config:
+    name: Validate config
+    runs-on: ubuntu-26.04-arm
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Validate Renovate config files
+        uses: suzuki-shunsuke/github-action-renovate-config-validator@1e1604219a6b38ae9a10aff42a28a3656322c31a # v2.4.1
