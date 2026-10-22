@@ -1,6 +1,5 @@
 ## Python venv build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f AS venv-builder
-ARG PYTHON_VERSION=3.14.8
 
 COPY --from=ghcr.io/astral-sh/uv:0.13.3@sha256:bee0a2a458fd956c5df7b8b4c5fed2257b0af34866e3da7b51db0be3acb375d1 /uv /uvx /bin/
 
@@ -17,6 +16,7 @@ RUN mkdir -p /opt/venv /opt/python && \
 
 ## s6-overlay build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f AS s6-builder
+# renovate: datasource=github-releases depName=just-containers/s6-overlay
 ARG S6_OVERLAY_VERSION=3.2.3.2
 ARG TARGETARCH
 
@@ -43,9 +43,6 @@ RUN case "${TARGETARCH}" in \
     && tar -C s6-root -Jxpf s6-overlay-${S6_ARCH}.tar.xz \
     && rm -rf s6-overlay-*.tar.xz s6-overlay-*.tar.xz.sha256
 
-# TODO:
-# - Try to get renovate manager for Dockerfiles
-# - Put in API servers
 ## Main build stage
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
 ARG NODE_VERSION=22
@@ -71,7 +68,6 @@ ENV PATH="/opt/venv/bin:/opt/python/bin:$PATH"
 
 # Use the build from the official image, since all the NEXT_PUBLIC_ variables are handled there
 COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8 --chown=1000:1000 /app /app
-
 
 # Finally, copy project files
 COPY homepage /app
