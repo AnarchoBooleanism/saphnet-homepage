@@ -1,0 +1,21 @@
+#!/command/with-contenv bash
+
+# Capture the exit code of the longrun service
+# Argument 1 ($1) is the service's exit code. 
+# Argument 2 ($2) is the signal number if it was killed by a signal.
+if [ "${1}" -eq 256 ]; then
+    # Report error code 0 (no error) on SIGTERM/SIGKILL
+    if [ "${2}" -eq 15 ] || [ "${2}" -eq 9 ]; then
+        exit_code=0
+    else
+        exit_code="$((128 + ${2}))"
+    fi
+else
+    exit_code="${1}"
+fi
+
+# Write the exit code so the container terminates with it
+echo "${exit_code}" > /run/s6-linux-init-container-results/exitcode
+
+# Direct s6-overlay to halt and tear down the supervision tree
+exec /run/s6/basedir/bin/halt

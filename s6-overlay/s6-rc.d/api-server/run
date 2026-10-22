@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /opt/api-server
+fastapi run app/main.py --port 3001
