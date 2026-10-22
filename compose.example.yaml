@@ -1,0 +1,18 @@
+# Example Compose config
+
+services:
+  homepage:
+    image: ghcr.io/anarchobooleanism/saphnet-homepage:latest
+    container_name: homepage
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: homepage.int.saphnet.xyz # Set this to your desired domain, can also be *
+      HOMEPAGE_PORT: "3000" # (optional) Use this to configure the port for Homepage
+      API_PORT: "3001" # (optional) Use this to configure the port for the FastAPI server
+    env_file:
+      - ./.env
+    ports:
+    - "3000:3000"
+    - "3001:3001" # optional
+    restart: unless-stopped
