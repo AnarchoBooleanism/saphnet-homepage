@@ -66,7 +66,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=venv-builder /opt/python /opt/python
-COPY --from=venv-builder /bin/uv /bin/uvx /bin/
 COPY --from=venv-builder /opt/venv /opt/venv
 COPY --from=s6-builder /tmp/s6-root /
 ENV PATH="/opt/venv/bin:/opt/python/bin:$PATH"
@@ -74,14 +73,22 @@ ENV PATH="/opt/venv/bin:/opt/python/bin:$PATH"
 # Use the build from the official image, since all the NEXT_PUBLIC_ variables are handled there
 COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8 --chown=1000:1000 /app /app
 
+# The init-user service assumes this exists
+RUN mkdir -p /app/config
+
 # Finally, copy project files
 COPY homepage /app
 COPY api-server /opt/api-server
 COPY s6-overlay /etc/s6-overlay
-RUN chmod +x /etc/s6-overlay/scripts/*
+RUN for file in /etc/s6-overlay/scripts/*; do \
+        [ -e "$file" ] || [ -L "$file" ] || continue; \
+        chmod +x "$file"; \
+    done
 
-# The init-user service assumes this exists
-RUN mkdir -p /app/config
+# Write any Git-related info
+RUN printf "%s\n" "$GIT_VERSION_TAG" > GIT_VERSION_TAG.txt
+RUN printf "%s\n" "$GIT_COMMIT_MESSAGE" > GIT_COMMIT_MESSAGE.txt
+RUN printf "%s\n" "$GIT_VERSION_HASH" > GIT_VERSION_HASH.txt
 
 USER root
 ENV PUID=1000
@@ -93,14 +100,16 @@ RUN useradd -u 1000 -g appuser -M -s /bin/false appuser
 
 ENV NODE_ENV=production
 ENV HOSTNAME=::
-ENV PORT=3000
-EXPOSE $PORT
+ENV HOMEPAGE_PORT=3000
+ENV API_PORT=3001
+EXPOSE $HOMEPAGE_PORT
+EXPOSE $API_PORT
 
 # We want the services to be able to access any environment variables, since they are
 # similarly trusted, and the list of environment variables can change often
 ENV S6_KEEP_ENV=1
 
 HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
-    CMD wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$PORT/api/healthcheck || exit 1
+    CMD wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$HOMEPAGE_PORT/api/healthcheck || exit 1
 
 ENTRYPOINT ["/init"]
