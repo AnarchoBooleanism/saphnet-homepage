@@ -47,6 +47,11 @@ RUN case "${TARGETARCH}" in \
 FROM debian:13.7-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
 ARG NODE_VERSION=22
 
+# To be passed from Github Actions
+ARG GIT_VERSION_TAG=unspecified
+ARG GIT_COMMIT_MESSAGE=unspecified
+ARG GIT_VERSION_HASH=unspecified
+
 WORKDIR /app
 
 # Set up base environment
