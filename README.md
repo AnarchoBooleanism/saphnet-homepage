@@ -1,5 +1,5 @@
 # saphnet-homepage
-The config files for Homepage for the Sapphic Homelab/Home Server
+Custom image for Homepage, tailored to the Sapphic Homelab/Home Server
 
 To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 
