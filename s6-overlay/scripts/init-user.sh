@@ -37,8 +37,8 @@ else
     printf 'Group appuser is already GID %s.\n' "$appuser_current_gid"
 fi
 
-if [ ! "$appuser_current_gid" = "$PGID" ]; then
-    printf 'Setting UID of user appuser to %s...\n' "$PGID"
+if [ ! "$appuser_current_uid" = "$PUID" ]; then
+    printf 'Setting UID of user appuser to %s...\n' "$PUID"
     usermod -o -u "$PUID" appuser
 else
     printf 'User appuser is already UID %s.\n' "$appuser_current_uid"
