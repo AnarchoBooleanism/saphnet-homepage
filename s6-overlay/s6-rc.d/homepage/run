@@ -17,9 +17,19 @@ if [ "$HOSTNAME" = "::" ]; then
   fi
 fi
 
-# Drop privileges (when asked to) if root, otherwise run as current user
 export PORT=${HOMEPAGE_PORT}
 
+if [ "${ENVIRONMENT}" = "development" ]; then
+  if [ -z "${HOMEPAGE_ALLOWED_HOSTS+x}" ]; then
+    export HOMEPAGE_ALLOWED_HOSTS='*'
+  fi
+
+  export NODE_ENV=development
+else
+  export NODE_ENV=production
+fi
+
+# Drop privileges (when asked to) if root, otherwise run as current user
 if [ "$(id -u)" = "0" ] && [ "${PUID}" != "0" ]; then
   exec s6-setuidgid appuser node server.js
 else
