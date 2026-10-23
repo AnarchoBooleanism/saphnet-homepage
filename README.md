@@ -7,7 +7,7 @@ For debugging and development, be sure to run the command: `docker compose -f co
 
 Alternatively, without Docker Compose, you can run the command:
 ```sh
-docker run -d \
+docker run --rm \
   --name homepage-dev \
   -p 3000:3000 \
   -p 3001:3001 \
