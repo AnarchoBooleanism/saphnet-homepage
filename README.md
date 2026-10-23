@@ -1,6 +1,8 @@
 # saphnet-homepage
 Custom image for Homepage, tailored to the Sapphic Homelab/Home Server
 
+This Debian-based image relies on s6-overlay v3 to serve as the process supervisor to manage a Node-based server (serving Homepage itself) and a FastAPI server (hosting custom API endpoints for Homepage to consume). 
+
 To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 
 For debugging and development, be sure to run the command: `docker compose -f compose.dev.yaml up --build`
