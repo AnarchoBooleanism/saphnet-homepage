@@ -12,6 +12,8 @@ services:
       - ./api-server/app:/opt/api-server/app
     environment:
       ENVIRONMENT: "development"
+      PUID: ${PUID:-${UID:-1000}}
+      PGID: ${PUID:-${GID:-100}}
     env_file:
       - ./homepage.env
     ports:

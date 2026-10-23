@@ -92,7 +92,7 @@ RUN printf "%s\n" "$GIT_VERSION_HASH" > GIT_VERSION_HASH.txt
 
 USER root
 ENV PUID=1000
-ENV PGID=1000
+ENV PGID=100
 
 # Create appuser
 RUN groupadd -g 1000 appuser
