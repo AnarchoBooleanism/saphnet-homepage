@@ -3,7 +3,24 @@ Custom image for Homepage, tailored to the Sapphic Homelab/Home Server
 
 To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 
-For debugging and development, be sure to run the command: `docker run -p 3000:3000 --env-file homepage.env -v ./config:/app/config -v ./icons:/app/public/icons -v ./images:/app/public/images ghcr.io/gethomepage/homepage`
+For debugging and development, be sure to run the command: `docker compose -f compose.dev.yaml up --build`
+
+Alternatively, without Docker Compose, you can run the command:
+```sh
+docker run -d \
+  --name homepage-dev \
+  -p 3000:3000 \
+  -p 3001:3001 \
+  -v ./homepage/config:/app/config \
+  -v ./homepage/public/icons:/app/public/icons \
+  -v ./homepage/public/images:/app/public/images \
+  -v ./api-server/app:/opt/api-server/app \
+  -e ENVIRONMENT="development" \
+  -e PUID="${PUID:-${UID:-1000}}" \
+  -e PGID="${PUID:-${GID:-100}}" \
+  --env-file ./homepage.env \
+  $(docker build -q .)
+```
 
 Environment variables to pass secrets to in `homepage.env`:
 - `HOMEPAGE_VAR_PROXMOX_USERNAME`
