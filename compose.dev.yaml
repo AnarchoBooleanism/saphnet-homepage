@@ -1,0 +1,19 @@
+# Compose config to use for development
+# Run with the command "docker compose -f compose.dev.yaml up --build"
+
+services:
+  homepage-dev:
+    build:
+      context: .
+    volumes:
+      - ./homepage/config:/app/config
+      - ./homepage/public/icons:/app/public/icons
+      - ./homepage/public/images:/app/public/images
+      - ./api-server/app:/opt/api-server/app
+    environment:
+      ENVIRONMENT: "development"
+    env_file:
+      - ./homepage.env
+    ports:
+    - "3000:3000"
+    - "3001:3001"

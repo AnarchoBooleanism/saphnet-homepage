@@ -98,7 +98,7 @@ ENV PGID=1000
 RUN groupadd -g 1000 appuser
 RUN useradd -u 1000 -g appuser -M -s /bin/false appuser
 
-ENV NODE_ENV=production
+ENV ENVIRONMENT=production
 ENV HOSTNAME=::
 ENV HOMEPAGE_PORT=3000
 ENV API_PORT=3001

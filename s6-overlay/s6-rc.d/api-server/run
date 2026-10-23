@@ -1,4 +1,9 @@
 #!/bin/sh
 
 cd /opt/api-server
-fastapi run app/main.py --port "${API_PORT}"
+
+if [ "${ENVIRONMENT}" = "development" ]; then
+    fastapi dev app/main.py --port "${API_PORT}"
+else
+    fastapi run app/main.py --port "${API_PORT}"
+fi

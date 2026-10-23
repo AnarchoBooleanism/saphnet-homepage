@@ -50,3 +50,5 @@ fi
 chown_path /app/config
 chown_path /app/config/logs
 chown_path /app/.next
+# API server
+chown_path /opt/api-server/app
