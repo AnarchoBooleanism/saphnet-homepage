@@ -71,7 +71,7 @@ COPY --from=s6-builder /tmp/s6-root /
 ENV PATH="/opt/venv/bin:/opt/python/bin:$PATH"
 
 # Use the build from the official image, since all the NEXT_PUBLIC_ variables are handled there
-COPY --from=ghcr.io/gethomepage/homepage:v2.6.0@sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8 --chown=1000:1000 /app /app
+COPY --from=ghcr.io/gethomepage/homepage:v2.7.0@sha256:19c5c09184458a41b7b5915e71463a39f36cd33540f41bdbed008791b8182d5f --chown=1000:1000 /app /app
 
 # The init-user service assumes this exists
 RUN mkdir -p /app/config
