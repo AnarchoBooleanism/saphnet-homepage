@@ -13,7 +13,7 @@ services:
     environment:
       ENVIRONMENT: "development"
       PUID: ${PUID:-${UID:-1000}}
-      PGID: ${PUID:-${GID:-100}}
+      PGID: ${PGID:-${GID:-100}}
     env_file:
       - "${ENV_FILE:-./homepage.env}"
     ports:
