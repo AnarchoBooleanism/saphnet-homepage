@@ -45,7 +45,7 @@ RUN case "${TARGETARCH}" in \
 
 ## Main build stage
 FROM debian:13.7-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
-ARG NODE_VERSION=22
+ARG NODE_VERSION=24
 
 # To be passed from Github Actions
 ARG GIT_VERSION_TAG=unspecified
