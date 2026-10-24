@@ -15,7 +15,7 @@ services:
       PUID: ${PUID:-${UID:-1000}}
       PGID: ${PUID:-${GID:-100}}
     env_file:
-      - ./homepage.env
+      - "${ENV_FILE:-./homepage.env}"
     ports:
-    - "3000:3000"
-    - "3001:3001"
+    - "${HOMEPAGE_PORT:-3000}:3000"
+    - "${API_PORT:-3001}:3001"

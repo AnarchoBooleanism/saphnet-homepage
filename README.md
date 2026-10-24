@@ -5,7 +5,11 @@ This Debian-based image relies on s6-overlay v3 to serve as the process supervis
 
 To deploy, use the image `ghcr.io/anarchobooleanism/saphnet-homepage:latest`
 
-For debugging and development, be sure to run the command: `docker compose -f compose.dev.yaml up --build`
+For debugging and development, you can use the provided script with the command: `./run-dev-env.sh`
+
+Note that a file named `homepage.env` should exist at the root directory of the repository before running; it does not need to have any values in it.
+
+If you prefer to run it with Docker Compose directly, run: `PUID=$UID PGID=$GID docker compose -f compose.dev.yaml up --build`
 
 Alternatively, without Docker Compose, you can run the command:
 ```sh
