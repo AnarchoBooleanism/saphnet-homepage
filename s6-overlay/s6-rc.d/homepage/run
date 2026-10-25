@@ -33,7 +33,7 @@ fi
 # Drop privileges (when asked to) if root, otherwise run as current user
 exec 2>&1
 if [ "$(id -u)" = "0" ] && [ "${PUID}" != "0" ]; then
-  exec s6-setuidgid appuser node server.js 2>&1
+  exec s6-setuidgid appuser node server.js
 else
-  exec node server.js 2>&1
+  exec node server.js
 fi
