@@ -110,6 +110,7 @@ EXPOSE $API_PORT
 ENV S6_KEEP_ENV=1
 
 HEALTHCHECK --interval=10s --timeout=3s --start-period=20s \
-    CMD wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$HOMEPAGE_PORT/api/healthcheck || exit 1
+    CMD wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$HOMEPAGE_PORT/api/healthcheck && \
+        wget --no-verbose --tries=1 --spider -Y off http://127.0.0.1:$API_PORT/health || exit 1
 
 ENTRYPOINT ["/init"]
