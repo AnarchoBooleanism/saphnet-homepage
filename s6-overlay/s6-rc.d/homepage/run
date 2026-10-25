@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # See: https://github.com/gethomepage/homepage/blob/dev/docker-entrypoint.sh
 # Note that this script expects PUID and PGID to already be set, which should already be done in the Dockerfile
 
 set -e
+exec > >(sed -u 's/^/[homepage] /') 2>&1
 
 cd /app
 
