@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # See: https://github.com/gethomepage/homepage/blob/dev/docker-entrypoint.sh
 # Note that this script expects PUID and PGID to already be set, which should already be done in the Dockerfile
 
 set -e
+exec > >(sed -u 's/^/[homepage] /') 2>&1
 
 cd /app
 
@@ -32,7 +33,7 @@ fi
 # Drop privileges (when asked to) if root, otherwise run as current user
 exec 2>&1
 if [ "$(id -u)" = "0" ] && [ "${PUID}" != "0" ]; then
-  exec s6-setuidgid appuser node server.js 2>&1 | sed -u 's/^/[homepage] /'
+  exec s6-setuidgid appuser node server.js 2>&1
 else
-  exec node server.js 2>&1 | sed -u 's/^/[homepage] /'
+  exec node server.js 2>&1
 fi

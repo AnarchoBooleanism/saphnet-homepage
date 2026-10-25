@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 cd /opt/api-server
 
-exec 2>&1
+exec > >(sed -u 's/^/[api-server] /') 2>&1
 if [ "${ENVIRONMENT}" = "development" ]; then
-    exec fastapi dev app/main.py --port "${API_PORT}" 2>&1 | sed -u 's/^/[api-server] /'
+    exec fastapi dev app/main.py --port "${API_PORT}"
 else
-    exec fastapi run app/main.py --port "${API_PORT}" 2>&1 | sed -u 's/^/[api-server] /'
+    exec fastapi run app/main.py --port "${API_PORT}"
 fi
