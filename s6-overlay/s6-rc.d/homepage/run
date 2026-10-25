@@ -30,6 +30,8 @@ else
   export NODE_ENV=production
 fi
 
+export HOMEPAGE_VAR_LOCAL_API_ORIGIN="http://127.0.0.1:${HOMEPAGE_PORT}"
+
 # Drop privileges (when asked to) if root, otherwise run as current user
 if [ "$(id -u)" = "0" ] && [ "${PUID}" != "0" ]; then
   exec s6-setuidgid appuser node server.js
