@@ -5,5 +5,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>AnarchoBooleanism/renovate-config#v6.0.0"
+  ],
+  "ignorePaths": [
+    "compose.example.yaml"
   ]
 }
