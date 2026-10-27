@@ -103,16 +103,23 @@
       showStats: true
       widgets:
         - type: customapi
-          url: https://borg.nas1.int.saphnet.xyz/api/v1/repositories
-          method: GET
-          headers:
-            Authorization: "Bearer {{HOMEPAGE_VAR_BORGWAREHOUSE_TOKEN}}"
+          url: "{{HOMEPAGE_VAR_LOCAL_API_ORIGIN}}/borgwarehouse"
+          display: block
+          mappings:
+            - field: version
+              label: Version
+            - field: repoCount
+              label: Repositories
+            - field: storageUsed
+              label: Storage
+              format: bytes
+        - type: customapi
+          url: "{{HOMEPAGE_VAR_LOCAL_API_ORIGIN}}/borgwarehouse/repositories"
           display: dynamic-list
           mappings:
-            items: repoList
+            items: repositories
             name: alias
-            label: storageUsed
-            format: bytes
+            label: status
 
   - Games:
     - Pterodactyl:
