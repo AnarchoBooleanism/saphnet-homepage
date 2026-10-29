@@ -20,6 +20,10 @@ permissions:
   attestations: write
   id-token: write
 
+concurrency:
+  group: "docker-registry"
+  cancel-in-progress: false
+
 jobs:
   build:
     strategy:
