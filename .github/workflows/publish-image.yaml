@@ -7,8 +7,12 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '.github/**' # Avoid issues with .github files
+    paths:
+      - 'api-server/**'
+      - 'homepage/**'
+      - 's6-overlay/**'
+      - '.dockerignore'
+      - 'Dockerfile'
 
 env:
   REGISTRY: ghcr.io
