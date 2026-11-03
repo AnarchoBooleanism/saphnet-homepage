@@ -1,0 +1,134 @@
+name: Checks, for new commits
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**' # Avoid issues with .github files
+      - '**/README.md' # Ignore documentation files
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+      - '**/README.md' # Ignore documentation files
+
+jobs:
+  changes:
+    name: Detect changed files
+    runs-on: ubuntu-26.04-arm
+    outputs:
+      compose: ${{ steps.changes.outputs.compose }}
+      image: ${{ steps.changes.outputs.image }}
+      renovate: ${{ steps.changes.outputs.renovate }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Detect changed files
+        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
+        id: changes
+        with:
+          filters: |
+            compose:
+              - '**/compose.yaml'
+              - '**/compose.*.yaml'
+            image:
+              - 'api-server/**'
+              - 'homepage/**'
+              - 's6-overlay/**'
+              - '.dockerignore'
+              - 'Dockerfile'
+            renovate:
+              - ".github/renovate.jsonc"
+
+  # Lints, other quick checks
+  validate-config:
+    name: Validate Renovate config
+    needs: changes
+    if: ${{ needs.changes.outputs.renovate == 'true' }}
+    runs-on: ubuntu-26.04-arm
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Validate Renovate config files
+        uses: suzuki-shunsuke/github-action-renovate-config-validator@1e1604219a6b38ae9a10aff42a28a3656322c31a # v2.4.1
+  
+  compose-lint:
+    name: Docker Compose lint
+    needs: changes
+    if: ${{ needs.changes.outputs.compose == 'true' }}
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Run docker-compose-linter
+        uses: docker-compose-linter/dclint-github-action@18659f6a7956706cb67cf9c1ad5e55f4352cbc17 # v1.6.0
+        with:
+          recursive: true
+          exclude: .github
+          # Rules being ignored for this repository, 
+          # we have specific needs
+          disable-rule: >-
+            no-unbound-port-interfaces
+            require-project-name-field
+            service-image-require-explicit-tag
+            services-alphabetical-order
+
+  # Tests
+  build-runner-image:
+    name: Build image (for runners)
+    needs: changes
+    if: ${{ needs.changes.outputs.image == 'true' }}
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: current-image:test
+          outputs: type=docker,dest=/tmp/current-image.tar
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Upload image artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: current-image
+          path: /tmp/current-image.tar
+          retention-days: 1
+
+  smoke-check:
+    name: Smoke check image
+    needs: build-runner-image
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Download image artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: current-image
+          path: /tmp
+      - name: Load Docker image
+        run: |
+          docker load --input /tmp/current-image.tar
+          docker image ls -a
+      - name: Run smoke tests
+        run: |
+          docker compose -f tests/compose.smoke-test.yaml up --exit-code-from test-runner
+      - name: Take down Compose environment
+        if: always()
+        run: |
+          docker compose -f tests/compose.smoke-test.yaml down
