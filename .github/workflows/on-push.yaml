@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-26.04-arm
     outputs:
       compose: ${{ steps.changes.outputs.compose }}
+      image: ${{ steps.changes.outputs.image }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -35,6 +36,12 @@ jobs:
             compose:
               - '**/compose.yaml'
               - '**/compose.*.yaml'
+            image:
+              - 'api-server/**'
+              - 'homepage/**'
+              - 's6-overlay/**'
+              - '.dockerignore'
+              - 'Dockerfile'
 
   # Lints, other quick checks
   compose-lint:
@@ -60,6 +67,8 @@ jobs:
 
   build-runner-image:
     name: Build image (for runners)
+    needs: changes
+    if: ${{ needs.changes.outputs.image == 'true' }}
     runs-on: ubuntu-26.04-arm
     steps:
       - name: Checkout repository
