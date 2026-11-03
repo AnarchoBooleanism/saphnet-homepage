@@ -97,7 +97,7 @@ jobs:
           path: /tmp
       - name: Load Docker image
         run: |
-          docker load --input current-image:test
+          docker load --input /tmp/current-image.tar
           docker image ls -a
       - name: Run smoke tests
         run: |
