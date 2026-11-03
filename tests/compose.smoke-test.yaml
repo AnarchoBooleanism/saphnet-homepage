@@ -1,0 +1,37 @@
+# Docker image smoke test with Compose
+
+x-common:
+  IMAGE_NAME: &image_name "current-image:test" # This image should be loaded from an earlier build artifact
+  HOMEPAGE_PORT: &homepage_port "3000"
+  API_PORT: &api_port "3001"
+
+services:
+  homepage:
+    image: *image_name # Using anchors to avoid Renovate and linter issues
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "*"
+      HOMEPAGE_PORT: *homepage_port
+      API_PORT: *api_port
+    expose:
+    - *homepage_port
+    - *api_port
+
+  test-runner:
+    image: curlimages/curl:8.23.0@sha256:3fb7e13e5d179a845c97d78204f3f1064d1907037f26a3ebf91710571151fd93
+    environment:
+      HOMEPAGE_PORT: *homepage_port
+      API_PORT: *api_port
+    command: >
+      sh -c "
+        printf 'Waiting for app to respond...\\n' &&
+        for i in $$(seq 1 10); do
+          if curl -so /dev/null --fail-with-body -f http://homepage:$$HOMEPAGE_PORT/api/healthcheck \\
+          && curl -so /dev/null --fail-with-body -f http://homepage:$$API_PORT/health; then
+            printf 'Smoke test passed successfully!\\n' && exit 0
+          fi
+          sleep 2
+        done
+        printf 'Error: Application failed to respond within timeout.\\n' && exit 1
+      "
+    depends_on:
+      - homepage
