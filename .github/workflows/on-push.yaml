@@ -25,6 +25,7 @@ jobs:
     outputs:
       compose: ${{ steps.changes.outputs.compose }}
       image: ${{ steps.changes.outputs.image }}
+      renovate: ${{ steps.changes.outputs.renovate }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -42,8 +43,23 @@ jobs:
               - 's6-overlay/**'
               - '.dockerignore'
               - 'Dockerfile'
+            renovate:
+              - ".github/renovate.jsonc"
 
   # Lints, other quick checks
+  validate-config:
+    name: Validate Renovate config
+    needs: changes
+    if: ${{ needs.changes.outputs.renovate == 'true' }}
+    runs-on: ubuntu-26.04-arm
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Validate Renovate config files
+        uses: suzuki-shunsuke/github-action-renovate-config-validator@1e1604219a6b38ae9a10aff42a28a3656322c31a # v2.4.1
+  
   compose-lint:
     name: Docker Compose lint
     needs: changes
@@ -65,6 +81,7 @@ jobs:
             service-image-require-explicit-tag
             services-alphabetical-order
 
+  # Tests
   build-runner-image:
     name: Build image (for runners)
     needs: changes
