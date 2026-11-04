@@ -34,10 +34,10 @@ jobs:
       matrix:
         include:
           - architecture: amd64
-            # renovate: datasource=github-runners depName=ubuntu
+            # renovate:github-runners
             os: ubuntu-24.04
           - architecture: arm64
-            # renovate: datasource=github-runners depName=ubuntu
+            # renovate:github-runners
             os: ubuntu-24.04-arm
     runs-on: ${{ matrix.os }}
     steps:
