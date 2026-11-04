@@ -9,13 +9,11 @@ on:
     branches:
       - main
     paths-ignore:
-      - '.github/**' # Avoid issues with .github files
       - '**/README.md' # Ignore documentation files
   push:
     branches:
       - main
     paths-ignore:
-      - '.github/**'
       - '**/README.md' # Ignore documentation files
 
 jobs:
