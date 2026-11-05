@@ -20,7 +20,7 @@
       description: System for deploying Docker containers
       server: control-server
       container: komodo-core
-      widget: 
+      widget:
         type: komodo
         url: https://komodo.int.saphnet.xyz
         key: "{{HOMEPAGE_VAR_KOMODO_API_KEY}}"
@@ -138,7 +138,7 @@
         widget:
           type: minecraft
           url: udp://pterodactyl-node-main.int-net.saphnet.xyz:25567
-  
+
   - Media Server:
     - Jellyfin:
         icon: jellyfin.svg
@@ -151,6 +151,7 @@
           type: jellyfin
           url: https://jellyfin.media.int.saphnet.xyz
           key: "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}"
+          version: 2
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true
           enableUser: true # optional, defaults to false
