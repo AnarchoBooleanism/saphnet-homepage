@@ -84,9 +84,9 @@ jobs:
     name: Build image (for runners)
     needs: changes
     if: ${{ needs.changes.outputs.image == 'true' }}
-    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-build-runner-image.yaml@docker-build-runner-image/v0.1.0
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-build-runner-image.yaml@9f45abe6f02b121e207e4ed531e92dd029fb91f2 # docker-build-runner-image/v0.1.0
 
   smoke-check:
     name: Smoke check image
     needs: build-runner-image
-    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-smoke-check.yaml@docker-build-runner-image/v0.1.0
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-smoke-check.yaml@9f45abe6f02b121e207e4ed531e92dd029fb91f2 # docker-build-runner-image/v0.1.0
