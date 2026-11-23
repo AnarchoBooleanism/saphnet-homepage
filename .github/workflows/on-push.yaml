@@ -84,49 +84,9 @@ jobs:
     name: Build image (for runners)
     needs: changes
     if: ${{ needs.changes.outputs.image == 'true' }}
-    runs-on: ubuntu-26.04-arm
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Set up Docker buildx
-        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
-      - name: Build and push Docker image
-        id: push
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
-        with:
-          context: .
-          file: ./Dockerfile
-          tags: current-image:test
-          outputs: type=docker,dest=/tmp/current-image.tar
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      - name: Upload image artifact
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
-        with:
-          name: current-image
-          path: /tmp/current-image.tar
-          retention-days: 1
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-build-runner-image.yaml@docker-build-runner-image/v0.1.0
 
   smoke-check:
     name: Smoke check image
     needs: build-runner-image
-    runs-on: ubuntu-26.04-arm
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Download image artifact
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
-        with:
-          name: current-image
-          path: /tmp
-      - name: Load Docker image
-        run: |
-          docker load --input /tmp/current-image.tar
-          docker image ls -a
-      - name: Run smoke tests
-        run: |
-          docker compose -f tests/compose.smoke-test.yaml up --exit-code-from test-runner
-      - name: Take down Compose environment
-        if: always()
-        run: |
-          docker compose -f tests/compose.smoke-test.yaml down
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-smoke-check.yaml@docker-build-runner-image/v0.1.0
