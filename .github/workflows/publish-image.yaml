@@ -32,7 +32,7 @@ concurrency:
 jobs:
   build:
     name: Build Docker image
-    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-multiarch-build.yaml@docker-multiarch/v0.1.0
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-multiarch-build.yaml@9f45abe6f02b121e207e4ed531e92dd029fb91f2 # docker-multiarch/v0.1.0
     with:
       registry: *registry
       username: *registry_username
@@ -44,7 +44,7 @@ jobs:
   merge:
     name: Merge image manifests
     needs: build
-    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-multiarch-merge-push.yaml@docker-multiarch/v0.1.0
+    uses: AnarchoBooleanism/gha-workflows/.github/workflows/docker-multiarch-merge-push.yaml@9f45abe6f02b121e207e4ed531e92dd029fb91f2 # docker-multiarch/v0.1.0
     with:
       registry: *registry
       username: ${{ github.actor }}
