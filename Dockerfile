@@ -1,5 +1,5 @@
 ## Python venv build stage
-FROM debian:13.7-slim@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2 AS venv-builder
+FROM debian:13.8-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0 AS venv-builder
 
 COPY --from=ghcr.io/astral-sh/uv:0.13.10@sha256:a3ea1357342c1a4bf9a0c53a3deb1b55379aefa037338d8113d5771efa01774f /uv /uvx /bin/
 
@@ -15,7 +15,7 @@ RUN mkdir -p /opt/venv /opt/python && \
     uv sync --frozen --no-install-project
 
 ## s6-overlay build stage
-FROM debian:13.7-slim@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2 AS s6-builder
+FROM debian:13.8-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0 AS s6-builder
 # renovate: datasource=github-releases depName=just-containers/s6-overlay
 ARG S6_OVERLAY_VERSION=3.2.3.2
 ARG TARGETARCH
@@ -44,7 +44,7 @@ RUN case "${TARGETARCH}" in \
     && rm -rf s6-overlay-*.tar.xz s6-overlay-*.tar.xz.sha256
 
 ## Main build stage
-FROM debian:13.7-slim@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2
+FROM debian:13.8-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0
 ARG NODE_VERSION=24
 
 # To be passed from Github Actions
